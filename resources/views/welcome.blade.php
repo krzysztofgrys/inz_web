@@ -65,6 +65,21 @@
         </style>
     </head>
     <body>
+
+    <div id="app">
+
+    </div>
+
+    <template id="users-template">
+
+    </template>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        new Vue({
+            el: '#app'
+        });
+    </script>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
