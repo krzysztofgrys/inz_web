@@ -31,7 +31,7 @@ class User implements Authenticatable
     }
     public function getRememberToken()
     {
-        return 'setRememberToken';
+        return $this->user->token;
     }
     public function getRememberTokenName()
     {

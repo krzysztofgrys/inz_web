@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/api/{useraccount}/{token}/{appid}', function(){})->middleware('auth.token');
-
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/add', 'AddEntityController@index')->name('addEntity');
+Route::post('/add', 'AddEntityController@store')->name('addEntity');
+Route::get('/entity/{id}','AddEntityController@show')->name('showEntity');

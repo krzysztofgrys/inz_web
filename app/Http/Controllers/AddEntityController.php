@@ -1,13 +1,21 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: krzysztofgrys
+ * Date: 11/12/17
+ * Time: 7:49 PM
+ */
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class AddEntityController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -15,6 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +32,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        return view('add_entity');
+    }
+
+    public function store(Request $request)
     {
 
         $user = Auth::user();
@@ -34,9 +48,14 @@ class HomeController extends Controller
             ]
         ]);
 
-        $result = $client->get('jolly_swartz/v1/entity');
-
-        return view('home', ['datas'=> json_decode($result->getBody()->getContents())->data]);
+        $result = $client->post('jolly_swartz/v1/entity', [
+            'form_params' => [
+                'title'       => $request->get('title'),
+                'description' => $request->get('description'),
+                'media'       => $request->get('media'),
+            ]
+        ]);
+        return redirect()->route('showEntity', ['id' => $result->getBody()->getContents()]);
     }
 
     public function show($id){
@@ -52,6 +71,4 @@ class HomeController extends Controller
 
         return view('entity', ['datas'=> json_decode($result->getBody()->getContents())->data]);
     }
-
-
 }

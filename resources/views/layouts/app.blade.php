@@ -29,22 +29,33 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Crypto Place') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{ route('home') }}">Strona Główna</a></li>
+                        <li><a href="{{ route('home') }}">Najpopularniejsze</a></li>
+                        @auth
+                            <li><a href="{{ route('addEntity') }}">Dodaj</a></li>
+                            <li><a href="{{ route('home') }}">Mój Profil</a></li>
+                            <li><a href="{{ route('home') }}">Wiadomości</a></li>
+                        @endauth
+                        <li><a href="{{ route('home') }}">Szukaj</a></li>
+
+
                     </ul>
+
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Zaloguj</a></li>
+                            <li><a href="{{ route('register') }}">Zarejestruj</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -57,7 +68,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Wyloguj
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
