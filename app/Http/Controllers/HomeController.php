@@ -25,11 +25,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        $user = Auth::user();
-
         $client = new Client([
             'headers' => [
-                'Authorization' => 'Bearer ' . $user->getRememberToken(),
                 'Accept'        => 'application/json'
             ]
         ]);
@@ -40,10 +37,8 @@ class HomeController extends Controller
     }
 
     public function show($id){
-        $user = Auth::user();
         $client = new Client([
             'headers' => [
-                'Authorization' => 'Bearer ' . $user->getRememberToken(),
                 'Accept'        => 'application/json'
             ]
         ]);
