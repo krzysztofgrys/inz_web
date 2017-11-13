@@ -38,13 +38,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ route('home') }}">Strona Główna</a></li>
-                        <li><a href="{{ route('home') }}">Najpopularniejsze</a></li>
+                        <li><a href="{{ route('top') }}">Najpopularniejsze</a></li>
                         @auth
                             <li><a href="{{ route('addEntity') }}">Dodaj</a></li>
-                            <li><a href="{{ route('home') }}">Mój Profil</a></li>
-                            <li><a href="{{ route('home') }}">Wiadomości</a></li>
+                            <li><a href="{{ route('profil') }}">Mój Profil</a></li>
+                            <li><a href="{{ route('messages') }}">Wiadomości</a></li>
                         @endauth
-                        <li><a href="{{ route('home') }}">Szukaj</a></li>
+                        <li><a href="{{ route('search') }}">Szukaj</a></li>
 
 
                     </ul>
