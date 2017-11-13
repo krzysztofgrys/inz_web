@@ -48,7 +48,7 @@ class AddEntityController extends Controller
             ]
         ]);
 
-        $result = $client->post('jolly_swartz/v1/entity', [
+        $result = $client->post(env('API').'/v1/entity', [
             'form_params' => [
                 'title'       => $request->get('title'),
                 'description' => $request->get('description'),
@@ -67,7 +67,7 @@ class AddEntityController extends Controller
             ]
         ]);
 
-        $result = $client->get('jolly_swartz/v1/entity/'.$id);
+        $result = $client->get(env('API').'/v1/entity/'.$id);
 
         return view('entity', ['datas'=> json_decode($result->getBody()->getContents())->data]);
     }

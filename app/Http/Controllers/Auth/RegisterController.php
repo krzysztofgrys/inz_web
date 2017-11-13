@@ -64,7 +64,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $client = new Client();
-        $result = $client->post('jolly_swartz/v1/register', [
+        $result = $client->post(env('API').'/v1/register', [
             'form_params' => [
                 'name'     => $request['name'],
                 'email'    => $request['email'],

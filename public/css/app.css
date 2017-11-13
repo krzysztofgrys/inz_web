@@ -8350,3 +8350,14 @@ button.close {
   }
 }
 
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background: rgb(255,147,0);
+  color: white;
+  font-size: 35px;
+  line-height: 100px;
+  text-align: center;
+}
+

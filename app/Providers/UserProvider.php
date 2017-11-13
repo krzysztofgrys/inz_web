@@ -19,7 +19,7 @@ class UserProvider implements \Illuminate\Contracts\Auth\UserProvider
     public function retrieveByCredentials(array $credentials)
     {
         $client = new Client();
-        $result = $client->post('jolly_swartz/v1/login', [
+        $result = $client->post(env('API').'/v1/login', [
             'form_params' => $credentials
         ]);
         $user = json_decode($result->getBody()->getContents())->success;
@@ -30,7 +30,7 @@ class UserProvider implements \Illuminate\Contracts\Auth\UserProvider
     public function retrieveById($identifier)
     {
         $client = new Client();
-        $result = $client->post('jolly_swartz/v1/login', [
+        $result = $client->post(env('API').'/v1/login', [
             'form_params' => [
                 'email'     => 'q@q.pl',
                 'password'    => 'q',
@@ -55,7 +55,7 @@ class UserProvider implements \Illuminate\Contracts\Auth\UserProvider
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
         $client = new Client();
-        $result = $client->post('jolly_swartz/v1/login', [
+        $result = $client->post(env('API').'/v1/login', [
             'form_params' => $credentials
         ]);
 

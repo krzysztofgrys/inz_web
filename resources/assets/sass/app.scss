@@ -7,3 +7,12 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+.circle{
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  border:1px solid red;
+  line-height: 65px;
+  text-align: center;
+}

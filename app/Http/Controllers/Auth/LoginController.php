@@ -61,7 +61,7 @@ class LoginController extends Controller
 //        $this->validateLogin($request);
 
 //        $client = new Client();
-//        $result = $client->post('jolly_swartz/v1/login', [
+//        $result = $client->post(env('API').'/v1/login', [
 //            'form_params' => [
 //                'email'     => $request['email'],
 //                'password'    => $request['password'],
