@@ -48,6 +48,7 @@ class AddEntityController extends Controller
             ]
         ]);
 
+        dd(1);
         $result = $client->post(env('API').'/v1/entity', [
             'form_params' => [
                 'title'       => $request->get('title'),
@@ -55,6 +56,7 @@ class AddEntityController extends Controller
                 'media'       => $request->get('media'),
             ]
         ]);
+
         return redirect()->route('showEntity', ['id' => $result->getBody()->getContents()]);
     }
 
