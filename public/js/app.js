@@ -993,6 +993,10 @@ var app = new Vue({
   el: '#app'
 });
 
+function setValue($asd) {
+  $('input[name="selected_type"]').val($asd);
+}
+
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {

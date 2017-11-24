@@ -8354,7 +8354,7 @@ button.close {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background: rgb(255,147,0);
+  background: #ff9300;
   color: white;
   font-size: 20px;
   line-height: 50px;
@@ -8362,8 +8362,8 @@ button.close {
 }
 
 .wrapper {
-  border : 2px solid #000;
-  overflow:hidden;
+  border: 2px solid #000;
+  overflow: hidden;
 }
 
 .wrapper div {
@@ -8371,34 +8371,32 @@ button.close {
   padding: 10px;
 }
 
-.entity{
-
-}
 .entity-left {
   background-color: white;
-  float:left;
-  margin-right:5px;
-  width:auto;
-  margin:5px;
-
+  float: left;
+  margin-right: 5px;
+  width: auto;
+  margin: 5px;
 }
+
 .entity-right {
   background-color: white;
-  overflow:hidden;
-  margin:5px;
-  min-height:140px;
+  overflow: hidden;
+  margin: 5px;
+  min-height: 140px;
 }
 
 @media screen and (max-width: 400px) {
   #one {
     float: none;
-    margin-right:0;
-    width:auto;
-    border:0;
-    border-bottom:2px solid #000;
+    margin-right: 0;
+    width: auto;
+    border: 0;
+    border-bottom: 2px solid #000;
   }
 }
 
-.entity-info{
+.entity-info {
   text-align: right;
 }
+

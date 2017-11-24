@@ -13,158 +13,44 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <div class="media">
-                            <div class="media-left">
+                        {{--<div class="media">--}}
+                            @foreach($datas as $data)
+
+                                <div class="entity">
+                                    <div class="entity-left">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>
+                                                <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
+                                                </p>
+                                                <p>PODARUJ</p>
+                                            </div>
+                                            <div class="col-md-4"><a href="#">
+                                                    <img class="media-object"
+                                                         src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                                         alt="Kurt">
+                                                </a></div>
 
 
-                            </div>
-
-                            <div class="entity">
-                                <div class="entity-left">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p>
-                                            <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
-                                            </p>
-                                            <p>PODARUJ</p>
                                         </div>
-                                        <div class="col-md-4"><a href="#">
-                                                <img class="media-object"
-                                                     src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                                     alt="Kurt">
-                                            </a></div>
-
-
                                     </div>
-                                </div>
 
-                                <a href = "#">
+                                    <a href="{{  '/entity/' . $data->id }}">
 
-                                <div class="entity-right"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nulla sapien, semper in sodales ac, rutrum at orci.
-                                    Maecenas vulputate nec tellus sit amet porttitor. Suspendisse congue porta sagittis. Ut erat diam, consectetur sed tempus
-                                    id, sodales nec felis. Donec sagittis nunc sapien, non consequat nunc ultrices non. Aliquam accumsan ligula ante, non
-                                    commodo risus sodales a. Vestibulum facilisis, enim in porta fringilla, tortor sapien congue purus, porta consectetur sem
-                                    turpis vitae mauris.
-                                    <div class ="entity-info"> komentarze / Zobacz wiecej</div>
-                                </div>
-                                </a>
-
-                            </div>
-                            <div class="entity">
-                                <div class="entity-left">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p>
-                                            <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
-                                            </p>
-                                            <p>PODARUJ</p>
+                                        <div class="entity-right">
+                                            <div class="entity-title">{{ $data->title }}</div>
+                                            <div class="entity-description">
+                                                {{ $data->description }}
+                                                <div class="entity-info"> komentarze / Zobacz wiecej</div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4"><a href="#">
-                                                <img class="media-object"
-                                                     src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                                     alt="Kurt">
-                                            </a></div>
-
-
-                                    </div>
+                                    </a>
                                 </div>
+                            @endforeach
 
-                                <div class="entity-right"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nulla sapien, semper in sodales ac, rutrum at orci.
-                                    Maecenas vulputate nec tellus sit amet porttitor. Suspendisse congue porta sagittis. Ut erat diam, consectetur sed tempus
-                                    id, sodales nec felis. Donec sagittis nunc sapien, non consequat nunc ultrices non. Aliquam accumsan ligula ante, non
-                                    commodo risus sodales a. Vestibulum facilisis, enim in porta fringilla, tortor sapien congue purus, porta consectetur sem
-                                    turpis vitae mauris.</div>
-
-
-                            </div>
-                            <div class="entity">
-                                <div class="entity-left">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p>
-                                            <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
-                                            </p>
-                                            <p>PODARUJ</p>
-                                        </div>
-                                        <div class="col-md-4"><a href="#">
-                                                <img class="media-object"
-                                                     src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                                     alt="Kurt">
-                                            </a></div>
-
-
-                                    </div>
-                                </div>
-
-                                <div class="entity-right"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nulla sapien, semper in sodales ac, rutrum at orci.
-                                    Maecenas vulputate nec tellus sit amet porttitor. Suspendisse congue porta sagittis. Ut erat diam, consectetur sed tempus
-                                    id, sodales nec felis. Donec sagittis nunc sapien, non consequat nunc ultrices non. Aliquam accumsan ligula ante, non
-                                    commodo risus sodales a. Vestibulum facilisis, enim in porta fringilla, tortor sapien congue purus, porta consectetur sem
-                                    turpis vitae mauris.</div>
-
-
-                            </div>
-                            <div class="entity">
-                                <div class="entity-left">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p>
-                                            <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
-                                            </p>
-                                            <p>PODARUJ</p>
-                                        </div>
-                                        <div class="col-md-4"><a href="#">
-                                                <img class="media-object"
-                                                     src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                                     alt="Kurt">
-                                            </a></div>
-
-
-                                    </div>
-                                </div>
-
-                                <div class="entity-right"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nulla sapien, semper in sodales ac, rutrum at orci.
-                                    Maecenas vulputate nec tellus sit amet porttitor. Suspendisse congue porta sagittis. Ut erat diam, consectetur sed tempus
-                                    id, sodales nec felis. Donec sagittis nunc sapien, non consequat nunc ultrices non. Aliquam accumsan ligula ante, non
-                                    commodo risus sodales a. Vestibulum facilisis, enim in porta fringilla, tortor sapien congue purus, porta consectetur sem
-                                    turpis vitae mauris.</div>
-
-
-                            </div>
-                            <div class="entity">
-                                <div class="entity-left">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p>
-                                            <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
-                                            </p>
-                                            <p>PODARUJ</p>
-                                        </div>
-                                        <div class="col-md-4"><a href="#">
-                                                <img class="media-object"
-                                                     src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                                     alt="Kurt">
-                                            </a></div>
-
-
-                                    </div>
-                                </div>
-
-                                <div class="entity-right"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nulla sapien, semper in sodales ac, rutrum at orci.
-                                    Maecenas vulputate nec tellus sit amet porttitor. Suspendisse congue porta sagittis. Ut erat diam, consectetur sed tempus
-                                    id, sodales nec felis. Donec sagittis nunc sapien, non consequat nunc ultrices non. Aliquam accumsan ligula ante, non
-                                    commodo risus sodales a. Vestibulum facilisis, enim in porta fringilla, tortor sapien congue purus, porta consectetur sem
-                                    turpis vitae mauris.</div>
-
-
-                            </div>
-                        </div>
+                        {{--</div>--}}
                     </div>
-                    @foreach($datas as $data)
 
-                        <p>{{ $data->id }}</p>
-
-                    @endforeach
 
                 </div>
             </div>

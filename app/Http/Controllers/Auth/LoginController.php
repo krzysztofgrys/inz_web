@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Authentication\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -43,11 +40,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function postLogin(){
+    public function postLogin()
+    {
         dd(1);
     }
 
-    public function authenticate(){
+    public function authenticate()
+    {
         dd(1);
     }
 
@@ -58,30 +57,14 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-//        $this->validateLogin($request);
+        $user = Auth::attempt([
+            'email'    => $request['email'],
+            'password' => $request['password'],
+        ]);
 
-//        $client = new Client();
-//        $result = $client->post(env('API').'/v1/login', [
-//            'form_params' => [
-//                'email'     => $request['email'],
-//                'password'    => $request['password'],
-//            ]
-//        ]);
+        $user = Auth::user();
 
-//        if($result->getStatusCode() == 200){
-//            $user = json_decode($result->getBody()->getContents())->success;
+        return redirect()->intended('/');
+    }
 
-            $user = Auth::attempt([
-                'email'     => $request['email'],
-                'password'    => $request['password'],
-            ]);
-
-            $user = Auth::user();
-
-            return view('login_success');
-        }
-
-//        return view('login_failed');
-
-//    }
 }

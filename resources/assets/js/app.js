@@ -20,3 +20,8 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+
+function setValue($asd){
+    $('input[name="selected_type"]').val( $asd);
+}

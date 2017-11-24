@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/add', 'AddEntityController@index')->name('addEntity');
 Route::post('/add', 'AddEntityController@store')->name('addEntity');
-Route::get('/entity/{id}','AddEntityController@show')->name('showEntity');
+Route::get('/entity/{id}','HomeController@show')->name('showEntity');
 Route::get('/messages','MessagesController@index')->name('messages');
 Route::get('/my','ProfilController@index')->name('profil');
 Route::get('/top','TopController@index')->name('top');

@@ -45,7 +45,7 @@ class HomeController extends Controller
 
         $result = $client->get(env('API').'/v1/entity/'.$id);
 
-        return view('entity', ['datas'=> json_decode($result->getBody()->getContents())->data]);
+        return view('entity', ['data'=> json_decode($result->getBody()->getContents())->data[0]]);
     }
 
 

@@ -48,7 +48,8 @@ class AddEntityController extends Controller
             ]
         ]);
 
-        dd(1);
+       dd($request->all());
+
         $result = $client->post(env('API').'/v1/entity', [
             'form_params' => [
                 'title'       => $request->get('title'),
