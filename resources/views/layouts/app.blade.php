@@ -84,7 +84,6 @@
                 </div>
             </div>
         </nav>
-        {{--{{ dump(Auth::user()->user->user->name) }}--}}
         @yield('content')
     </div>
 

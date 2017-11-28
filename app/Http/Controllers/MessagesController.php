@@ -8,6 +8,9 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessagesController extends Controller
 {
@@ -18,11 +21,42 @@ class MessagesController extends Controller
      */
     public function __construct()
     {
-
+        $this->middleware('auth');
     }
 
     public function index(){
 
-        return view('messages');
+
+        $user = Auth::user();
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+
+        $result        = $client->get(env('API') . '/v1/messages');
+
+        return view('messages', ['messages' => json_decode($result->getBody()->getContents())->data]);
+
+    }
+
+    public function show($id){
+
+        $user = Auth::user();
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+
+        $result        = $client->get(env('API') . '/v1/messages/'.$id);
+        dd(json_decode($result->getBody()->getContents())->data);
+        return view('message', ['messages' => json_decode($result->getBody()->getContents())->data, 'receiver' => $id]);
     }
 }

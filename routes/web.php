@@ -22,6 +22,7 @@ Route::get('/add', 'AddEntityController@index')->name('addEntity');
 Route::post('/add', 'AddEntityController@store')->name('addEntity');
 Route::get('/entity/{id}','HomeController@show')->name('showEntity');
 Route::get('/messages','MessagesController@index')->name('messages');
+Route::get('/messages/{id}','MessagesController@show')->name('message');
 Route::get('/my','ProfilController@index')->name('profil');
 Route::get('/top','TopController@index')->name('top');
 Route::get('/search','SearchController@index')->name('search');

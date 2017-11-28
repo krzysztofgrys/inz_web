@@ -13,48 +13,52 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{--<div class="media">--}}
-                            @foreach($datas as $data)
+                        @if (empty($datas))
+                            <h1>Brak danych</h1>
+                        @else
+                            <div class="media">
 
-                                <div class="entity">
-                                    <div class="entity-left">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <p>
-                                                <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
-                                                </p>
-                                                <p>PODARUJ</p>
+                                @foreach($datas as $data)
+
+                                    <div class="entity">
+                                        <div class="entity-left">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <p>
+                                                    <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
+                                                    </p>
+                                                    <p>PODARUJ</p>
+                                                </div>
+                                                <div class="col-md-4"><a href="#">
+                                                        <img class="media-object"
+                                                             src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                                             alt="Kurt">
+                                                    </a></div>
+
+
                                             </div>
-                                            <div class="col-md-4"><a href="#">
-                                                    <img class="media-object"
-                                                         src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                                         alt="Kurt">
-                                                </a></div>
-
-
                                         </div>
+
+                                        <a href="{{  '/entity/' . $data->id }}">
+
+                                            <div class="entity-right">
+                                                <div class="entity-title">{{ $data->title }}</div>
+                                                <div class="entity-description">
+                                                    {{ $data->description }}
+                                                    <div class="entity-info"> komentarze / Zobacz wiecej</div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
+                                @endforeach
 
-                                    <a href="{{  '/entity/' . $data->id }}">
+                                {{--</div>--}}
+                            </div>
 
-                                        <div class="entity-right">
-                                            <div class="entity-title">{{ $data->title }}</div>
-                                            <div class="entity-description">
-                                                {{ $data->description }}
-                                                <div class="entity-info"> komentarze / Zobacz wiecej</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
-
-                        {{--</div>--}}
+                        @endif
                     </div>
-
-
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

@@ -27,25 +27,28 @@ class HomeController extends Controller
 
         $client = new Client([
             'headers' => [
-                'Accept'        => 'application/json'
+                'Accept' => 'application/json'
             ]
         ]);
 
-        $result = $client->get(env('API').'/v1/entity');
+        $result = $client->get(env('API') . '/v1/entity');
 
-        return view('home', ['datas'=> json_decode($result->getBody()->getContents())->data]);
+        return view('home', ['datas' => json_decode($result->getBody()->getContents())->data]);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $client = new Client([
             'headers' => [
-                'Accept'        => 'application/json'
+                'Accept' => 'application/json'
             ]
         ]);
 
-        $result = $client->get(env('API').'/v1/entity/'.$id);
+        $result   = $client->get(env('API') . '/v1/entity/' . $id);
+        $comments = $client->get(env('API') . '/v1/comment/'.$id);
 
-        return view('entity', ['data'=> json_decode($result->getBody()->getContents())->data[0]]);
+
+        return view('entity', ['data' => json_decode($result->getBody()->getContents())->data[0], 'comments'=>json_decode($comments->getBody()->getContents())->data]);
     }
 
 

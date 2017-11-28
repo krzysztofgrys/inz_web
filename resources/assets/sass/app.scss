@@ -60,3 +60,59 @@
 .entity-info{
   text-align: right;
 }
+
+
+.messages {
+  border: 2px solid #000;
+  overflow: hidden;
+  margin: 5px
+}
+
+.messages div {
+  margin: 5px;
+  min-height: 70px;
+  padding: 10px;
+}
+
+.messages-left {
+  background-color: white;
+  float: left;
+  width: auto;
+  margin: 5px;
+}
+
+.messages-right {
+  background-color: white;
+  overflow: hidden;
+  margin: 5px;
+  font-size: 30px;
+  min-height: 140px;
+}
+
+.message-receiver{
+  background-color: white;
+  float: left;
+  width: auto;
+  margin: 5px;
+}
+
+.message-sender{
+  background-color: blue;
+  float: right;
+  width: auto;
+  margin: 5px;
+}
+
+
+.message div{
+  margin: 5px;
+  min-height: 70px;
+  padding: 10px;
+}
+
+.message{
+  border: 2px solid #000;
+  overflow: hidden;
+  margin: 5px
+
+}

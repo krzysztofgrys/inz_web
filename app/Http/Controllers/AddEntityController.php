@@ -48,21 +48,26 @@ class AddEntityController extends Controller
             ]
         ]);
 
-       dd($request->all());
 
-        $result = $client->post(env('API').'/v1/entity', [
+        $thumbnailName = md5($request->get('thumbnail') . time());
+        $result        = $client->post(env('API') . '/v1/entity', [
             'form_params' => [
-                'title'       => $request->get('title'),
-                'description' => $request->get('description'),
-                'media'       => $request->get('media'),
+                'title'         => $request->get('title'),
+                'description'   => $request->get('description'),
+                'thumbnail'         => $thumbnailName,
+                'url'           => $request->get('url'),
+                'own_input'     => $request->get('own_input'),
+                'selected_type' => $request->get('selected_type')
+
             ]
         ]);
 
         return redirect()->route('showEntity', ['id' => $result->getBody()->getContents()]);
     }
 
-    public function show($id){
-        $user = Auth::user();
+    public function show($id)
+    {
+        $user   = Auth::user();
         $client = new Client([
             'headers' => [
                 'Authorization' => 'Bearer ' . $user->getRememberToken(),
@@ -70,8 +75,8 @@ class AddEntityController extends Controller
             ]
         ]);
 
-        $result = $client->get(env('API').'/v1/entity/'.$id);
+        $result = $client->get(env('API') . '/v1/entity/' . $id);
 
-        return view('entity', ['datas'=> json_decode($result->getBody()->getContents())->data]);
+        return view('entity', ['datas' => json_decode($result->getBody()->getContents())->data]);
     }
 }

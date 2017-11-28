@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+<script>
+    function setValue($asd) {
+        console.log($asd);
+        $('input[name="selected_type"]').val($asd);
+    }
+</script>
 @section('content')
     <div class="container">
         <div class="row">
@@ -55,7 +60,7 @@
                             <div class="form-group">
                                 <label for="media" class="col-md-2 control-label">Wybierz typ wpisu:</label>
                                 <div class="col-md-8">
-                                    <ul class="nav nav-pills mb-2" id="type" role="tablist">
+                                    <ul class="nav nav-pills mb-2 " id="type" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link" id="url_type" data-toggle="pill" href="#pills-profile" role="tab"
                                                aria-controls="pills-profile" aria-selected="false" onclick="setValue('url')">URL</a>
@@ -75,7 +80,7 @@
                                         <label for="url" class="col-md-2 control-label">Url:</label>
 
                                         <div class="col-md-8">
-                                            <input id="url" type="url" class="form-control" name="url" >
+                                            <input id="url" type="url" class="form-control" name="url">
 
                                             @if ($errors->has('url'))
                                                 <span class="help-block">
@@ -92,7 +97,7 @@
                                         <label for="own_input" class="col-md-2 control-label">Wpisz:</label>
 
                                         <div class="col-md-8">
-                                            <textarea id="own" cols="100" rows="5" class="form-control" name="own_input" ></textarea>
+                                            <textarea id="own" cols="100" rows="5" class="form-control" name="own_input"></textarea>
 
                                             @if ($errors->has('own_input'))
                                                 <span class="help-block">
