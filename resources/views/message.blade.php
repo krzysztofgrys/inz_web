@@ -6,11 +6,11 @@
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
 
-                    <div class="panel-heading">Konwersacja z </div>
+                    <div class="panel-heading">Konwersacja z @ {{ $receiver->name }}</div>
 
                     @foreach($messages as $message)
                         <div class="message">
-                            @if($message->receiver_id == $receiver)
+                            @if($message->receiver_id == $receiver->id)
                                 <div class="message-receiver">
                                     RECEIVER
 

@@ -56,7 +56,9 @@ class MessagesController extends Controller
 
 
         $result        = $client->get(env('API') . '/v1/messages/'.$id);
-        dd(json_decode($result->getBody()->getContents())->data);
-        return view('message', ['messages' => json_decode($result->getBody()->getContents())->data, 'receiver' => $id]);
+
+        $data = json_decode($result->getBody()->getContents())->data;
+
+        return view('message', ['messages' => $data->messages, 'receiver' => $data->receiver, 'sender' => $data->sender]);
     }
 }

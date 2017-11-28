@@ -18,7 +18,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <p>
-                                        <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
+                                        <div class="circle"><span><i class="fa fa-btc"></i> {{ $data->rating }}</span></div>
                                         </p>
                                         <p>PODARUJ</p>
                                     </div>

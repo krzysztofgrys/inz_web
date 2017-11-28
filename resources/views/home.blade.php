@@ -24,10 +24,11 @@
                                         <div class="entity-left">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <p>
-                                                    <div class="circle"><span><i class="fa fa-btc"></i>0</span></div>
-                                                    </p>
-                                                    <p>PODARUJ</p>
+
+                                                    <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
+
+                                                    <p><button type="button" class="btn btn-info">Ocen</button></p>
+
                                                 </div>
                                                 <div class="col-md-4"><a href="#">
                                                         <img class="media-object"
