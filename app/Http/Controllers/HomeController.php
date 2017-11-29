@@ -78,4 +78,26 @@ class HomeController extends Controller
     }
 
 
+    public function addComment(Request $request, $id){
+
+
+        $user = Auth::user();
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+
+        $result        = $client->post(env('API') . '/v1/comment', [
+            'form_params' => [
+                'entity'         => $id,
+                'comment'   => $request->get('comment'),
+            ]
+        ]);
+
+        return redirect()->route('showEntity', ['id' => $result->getBody()->getContents()]);
+    }
 }

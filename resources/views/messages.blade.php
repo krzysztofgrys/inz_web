@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Twoje konwersacje:</div>
+                    <div class="panel-heading">Twoje konwersacje:  <a href="./messages/new" class="btn btn-info" role="button">Nowa Wiadomość</a>
+                    </div>
 
 
                     @if(empty($messages))
@@ -16,7 +17,7 @@
                     @endif
                     @foreach($messages as $message)
                         <div class="messages">
-                            <a href="/messages/{{ $message->id }}">
+                            <a href="/messages/show/{{ $message->id }}">
                                 <div class="messages-left"><img class="media-object"
                                                                 src="{{ asset('image/'.$message->avatar) }}"
                                                                 alt="Kurt"></div>

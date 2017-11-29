@@ -94,7 +94,7 @@ class MessagesController extends Controller
             ]
         ]);
 
-        
+
         return redirect()->route('message', ['id' => $result->getBody()->getContents()]);
 
 

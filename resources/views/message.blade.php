@@ -30,28 +30,41 @@
 
                 <div class="panel panel-default">
 
-                    <div class="panel-heading">Odpowiedz: </div>
+                    <div class="panel-heading">Odpowiedz:</div>
                     <div class="panel-body">
-                        <div class="entity">
-                            <div class="entity-left">
-                                <div class="row">
-                                    <div class="col-md-4"><a href="#">
-                                            <img class="media-object"
-                                                 src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                                 alt="Kurt">
-                                        </a></div>
+                        <form class="form-horizontal" method="POST" action="{{ route('sendMessage') }}">
+                            {{ csrf_field() }}
+
+
+                            <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
+                                <label for="body" class="col-md-2 control-label"><img class="media-object"
+                                                                                      src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                                                                      alt="Kurt"></label>
+
+                                <div class="col-md-8">
+                                    <textarea id="body" type="text" class="form-control" name="body" value="{{ old('body') }}"></textarea>
+                                    <input id="receiver" name="receiver" type="hidden" value="{{ $receiver->name }}">
+
+                                    @if ($errors->has('body'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('body') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="entity-right">
-                                <textarea class="form-control" rows="3" id="comment"></textarea>
-                                <div class="entity-info">
-                                    <button type="button" class="btn btn-primary"> Dodaj</button>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-12 col-md-offset-9">
+                                    <button type="submit" class="btn btn-primary">
+                                        Wyślij
+                                    </button>
                                 </div>
-
-
                             </div>
 
-                        </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
