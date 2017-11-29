@@ -61,4 +61,45 @@ class MessagesController extends Controller
 
         return view('message', ['messages' => $data->messages, 'receiver' => $data->receiver, 'sender' => $data->sender]);
     }
+
+
+    public function newConversation(Request $request){
+
+        return view('new_message');
+
+    }
+
+
+    public function sendMessage(Request $request){
+
+
+        $receiver = $request->get('receiver');
+        $message = $request->get('body');
+
+
+        $user = Auth::user();
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+
+        $result        = $client->post(env('API') . '/v1/messages', [
+            'form_params' => [
+                'receiver'         => $receiver,
+                'message'   => $message,
+            ]
+        ]);
+
+        
+        return redirect()->route('message', ['id' => $result->getBody()->getContents()]);
+
+
+    }
+
+
+
 }
