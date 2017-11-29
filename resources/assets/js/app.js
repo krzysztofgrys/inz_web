@@ -25,3 +25,4 @@ const app = new Vue({
 function setValue($asd){
     $('input[name="selected_type"]').val( $asd);
 }
+

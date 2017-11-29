@@ -15,6 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth', ['only' => ['rate']]);
     }
 
     /**
@@ -45,10 +46,35 @@ class HomeController extends Controller
         ]);
 
         $result   = $client->get(env('API') . '/v1/entity/' . $id);
-        $comments = $client->get(env('API') . '/v1/comment/'.$id);
+        $comments = $client->get(env('API') . '/v1/comment/' . $id);
 
 
-        return view('entity', ['data' => json_decode($result->getBody()->getContents())->data[0], 'comments'=>json_decode($comments->getBody()->getContents())->data]);
+        return view('entity',
+            [
+                'data'     => json_decode($result->getBody()->getContents())->data[0],
+                'comments' => json_decode($comments->getBody()->getContents())->data
+            ]
+        );
+    }
+
+    public function rate($id)
+    {
+
+        $user   = Auth::user();
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+        $result = $client->post(env('API') . '/v1/rate', [
+            'form_params' => [
+                'entityId' => $id
+            ]
+        ]);
+
+        return $result->getBody()->getContents();
     }
 
 

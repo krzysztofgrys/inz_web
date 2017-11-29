@@ -990,12 +990,23 @@ window.Vue = __webpack_require__(35);
 Vue.component('example', __webpack_require__(38));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
 
 function setValue($asd) {
-  $('input[name="selected_type"]').val($asd);
+    $('input[name="selected_type"]').val($asd);
 }
+
+function reverseGeocodeAddress(id) {
+    $.ajax({
+        type: "GET",
+        url: './entity/' + id + '/rate',
+        data: "",
+        success: function success() {
+            console.log("Geodata sent");
+        }
+    });
+};
 
 /***/ }),
 /* 11 */

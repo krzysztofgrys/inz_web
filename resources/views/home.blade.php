@@ -27,7 +27,7 @@
 
                                                     <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
 
-                                                    <p><button type="button" class="btn btn-info">Ocen</button></p>
+                                                    <p><button type="button" class="btn btn-info" onclick="reverseGeocodeAddress({{ $data->id }} )">Ocen</button></p>
 
                                                 </div>
                                                 <div class="col-md-4"><a href="#">
