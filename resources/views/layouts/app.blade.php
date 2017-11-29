@@ -62,6 +62,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 
+{{--                                    {{ dd(Auth::user()) }}--}}
                                     {{ Auth::user()->user->user->name }} <span class="caret"></span>
                                 </a>
 

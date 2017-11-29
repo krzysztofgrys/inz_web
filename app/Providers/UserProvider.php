@@ -25,21 +25,25 @@ class UserProvider implements \Illuminate\Contracts\Auth\UserProvider
         $user = json_decode($result->getBody()->getContents())->success;
         $user = new User($user);
         $this->user = $user;
+        session()->push('user', $user);
         return $user;
     }
+
     public function retrieveById($identifier)
     {
-        $client = new Client();
-        $result = $client->post(env('API').'/v1/login', [
-            'form_params' => [
-                'email'     => 'q@q.pl',
-                'password'    => 'q',
-            ]
-        ]);
-        $user = json_decode($result->getBody()->getContents())->success;
-        $user = new User($user);
-        $this->user = $user;
-        return $user;
+//        $client = new Client();
+//        $result = $client->get(env('API').'/v1/users/'.$identifier);
+//
+//        $user = json_decode($result->getBody()->getContents());
+//        $user = new User($user);
+//        $this->user = $user;
+//        return $user;
+
+        if( ($user = session()->get('user')) ){
+            return $user[0];
+        }
+
+        return null;
 
     }
     public function retrieveByToken($identifier, $token)
