@@ -5,7 +5,18 @@
         <div class="row">
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Najpopularniejsze</div>
+                    <div class="panel-heading">Najpopularniejsze
+                        <div class="text-right pull-right">
+                            <a href="/top/6" class="btn btn-primary btn-xs">6 godzin</a>
+                            <a href="/top/12" class="btn btn-primary btn-xs">12 godzin</a>
+                            <a href="/top/24" class="btn btn-primary btn-xs">24 godziny</a>
+                            <a href="/top/week" class="btn btn-primary btn-xs">tydzień</a>
+                            <a href="/top/month" class="btn btn-primary btn-xs">Miesiac</a>
+                            <a href="/top/year" class="btn btn-primary btn-xs">Rok</a>
+                        </div>
+
+
+                    </div>
 
                     <div class="panel-body">
                         @if (session('status'))
@@ -15,7 +26,10 @@
                         @endif
 
                             @if (empty($datas))
-                                <h1>Brak danych</h1>
+                                <h1>Brak danych, Zmień zakres</h1>
+                                <h3>
+
+                                </h3>
                             @else
                                 <div class="media">
 

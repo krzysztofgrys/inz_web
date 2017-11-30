@@ -33,8 +33,6 @@ class ProfilController extends Controller
         ]);
 
 
-
-
         return view('my');
     }
 
@@ -57,8 +55,55 @@ class ProfilController extends Controller
 
 
         return view('my', [
-            'user'           => $result->user,
+            'user'         => $result->user,
             'userEntities' => $result->user_entities
         ]);
+    }
+
+    public function edit($id)
+    {
+        $user = Auth::user();
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+        $result = $client->get(env('API') . '/v1/users/' . $id);
+
+        $result = json_decode($result->getBody()->getContents());
+
+
+        return view('editProfile', [
+            'user' => $result->user
+        ]);
+    }
+
+
+    public function editProfile(Request $request, $id)
+    {
+
+        $user = Auth::user();
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+        $result = $client->put(env('API') . '/v1/users/' . $id, [
+            'form_params' => [
+                'city'        => $request->get('city'),
+                'description' => $request->get('description'),
+                'fullname'    => $request->get('fullname')
+            ]
+        ]);
+
+        $result = $result->getBody()->getContents();
+
+        return redirect()->route('showProfile', $result);
     }
 }

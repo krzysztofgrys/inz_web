@@ -6,7 +6,7 @@
             <div class="col-md-12 col-md-offset-0">
                 <div class="panel panel-default">
                     <div class="panel-heading font-weight-bold"> {{$user->name }}
-                        <div class="text-right pull-right"><a href="#" class="btn btn-success btn-xs">Edytuj Profil</a></div>
+                        <div class="text-right pull-right"><a href="/profile/{{$user->id }}/edit" class="btn btn-success btn-xs">Edytuj Profil</a></div>
                     </div>
 
 
@@ -18,7 +18,7 @@
                                                        src="{{ asset('image/'.$user->avatar) }}"
                                                        alt="Kurt"></div>
                             <div class="col-sm-5">
-                                <p class="font-weight-bold"> Imię i Nazwisko:  {{ $user->name }}</p>
+                                <p class="font-weight-bold"> Imię i Nazwisko:  {{ $user->fullname }}</p>
                                 <p class="font-weight-bold"> Miasto:  {{ $user->city }}</p>
 
 
