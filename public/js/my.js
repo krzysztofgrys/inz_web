@@ -16,13 +16,13 @@ function autoload_success(response_data, response, request) {
     if (response_data.length === 0) {
         response_data = [ { value: "", label: "Not found: " + request.term } ];
     }
-
+    console.log('adasdasd');
     response(response_data);
 }
 
 
 $(function() {
-    user = $('#receiver').val() || '';
+    var user = $('#receiver').val() || '';
     $( ".autocomplete" ).autocomplete({
         source: function( request, response ) {
             $.ajax({

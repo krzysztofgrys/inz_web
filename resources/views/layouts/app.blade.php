@@ -42,7 +42,7 @@
                         <li><a href="{{ route('top') }}">Najpopularniejsze</a></li>
                         @auth
                             <li><a href="{{ route('addEntity') }}">Dodaj</a></li>
-                            <li><a href="{{ route('profil') }}">Mój Profil</a></li>
+                            <li><a href="{{ route('showProfile', Auth::user()->user->user->id ) }}">Mój Profil</a></li>
                             <li><a href="{{ route('messages') }}">Wiadomości</a></li>
                         @endauth
                         <li><a href="{{ route('search') }}">Szukaj</a></li>
