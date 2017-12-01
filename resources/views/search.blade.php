@@ -11,12 +11,19 @@
 
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">
-                            <div class="input-group">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Szukaj...">
-                                <span class="input-group-btn">
-                     <button class="btn btn-primary" type="button">Szukaj</button>
-                    </span>
-                            </div>
+                            <form class="form-horizontal" method="POST" action="{{ route('searchPhase') }}">
+
+                                <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
+
+                                    <div class="input-group">
+                                        <input type="text" id="search" name="search" class="form-control" placeholder="Szukaj..." required>
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                        <span class="input-group-btn"><button class="btn btn-primary" type="submit">Szukaj</button></span>
+                                    </div>
+                                </div>
+
+                            </form>
                             <p></p>
 
                         </div>
@@ -28,6 +35,43 @@
                     </div>
                 </div>
             </div>
+
+
+            @if(!empty($data->users))
+                <div class="panel panel-default">
+                    <div class="panel-heading">Znalezieni użytkownicy:</div>
+
+                    <div class="panel-body">
+
+                        @foreach($data->users as $user)
+                            <p>{{ $user}}</p>
+
+                        @endforeach
+
+                    </div>
+                </div>
+
+            @endif
+
+            @if(!empty($data->entries))
+                <div class="panel panel-default">
+                    <div class="panel-heading">Znalezione wpisy:</div>
+
+                    <div class="panel-body">
+
+                        <div class="panel-body">
+
+                            @foreach($data->entries as $entry)
+                                <p>{{ dd($entry) }}</p>
+
+                            @endforeach
+
+                        </div>
+
+                    </div>
+                </div>
+
+            @endif
         </div>
     </div>
 

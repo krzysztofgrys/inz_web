@@ -13,10 +13,9 @@ function reverseGeocodeAddress(id) {
 var selected_hsn = '';
 
 function autoload_success(response_data, response, request) {
-    if (response_data.length === 0) {
-        response_data = [ { value: "", label: "Not found: " + request.term } ];
-    }
-    console.log('adasdasd');
+    console.log(response_data);
+
+
     response(response_data);
 }
 
@@ -32,7 +31,7 @@ $(function() {
                     search: request.term
                 },
                 success: function (data ) {
-                    autoload_success(data, response, request);
+                    autoload_success(JSON.parse(data), response, request);
 
                 }
             })

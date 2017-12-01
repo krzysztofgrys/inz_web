@@ -30,6 +30,7 @@ Route::post('/messages/send', 'MessagesController@sendMessage')->name('sendMessa
 Route::get('/top', 'TopController@index')->name('top');
 Route::get('/top/{time}', 'TopController@show')->name('topTime');
 Route::get('/search', 'SearchController@index')->name('search');
+Route::post('/search', 'SearchController@show')->name('searchPhase');
 Route::get('/user/search', 'UserController@search')->name('userAutocomplete');
 Route::get('/profile/{id}', 'ProfilController@show')->name('showProfile');
 Route::get('/profile/{id}/edit', 'ProfilController@edit')->name('editProfile');
