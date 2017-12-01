@@ -44,7 +44,7 @@
                     <div class="panel-body">
 
                         @foreach($data->users as $user)
-                            <p>{{ $user}}</p>
+                            <p>{{$user->name}}</p>
 
                         @endforeach
 
