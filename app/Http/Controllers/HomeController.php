@@ -100,4 +100,31 @@ class HomeController extends Controller
 
         return redirect()->route('showEntity', ['id' => $result->getBody()->getContents()]);
     }
+
+    public function delete(Request $request, $id){
+
+        $user = Auth::user();
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+
+        $result        = $client->delete(env('API') . '/v1/entity/'.$id);
+        $result = $result->getBody()->getContents();
+
+        if($result=='ok'){
+            $request->session()->flash('success', 'Usunięto');
+        }else{
+            $request->session()->flash('error', 'Blad');
+
+        }
+
+        return redirect()->route('home');
+    }
+
+
 }

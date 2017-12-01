@@ -22,6 +22,7 @@ Route::get('/add', 'AddEntityController@index')->name('addEntity');
 Route::post('/add', 'AddEntityController@store')->name('addEntity');
 Route::get('/entity/{id}', 'HomeController@show')->name('showEntity');
 Route::get('/entity/{id}/rate', 'HomeController@rate')->name('rateEntity');
+Route::get('/entity/{id}/delete', 'HomeController@delete')->name('deleteEntity');
 Route::post('/entity/{id}/comment/add', 'HomeController@addComment')->name('addComment');
 Route::get('/messages', 'MessagesController@index')->name('messages');
 Route::get('/messages/show/{id}', 'MessagesController@show')->name('message');

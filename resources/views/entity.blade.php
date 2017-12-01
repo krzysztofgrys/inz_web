@@ -6,7 +6,16 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
 
-                <div class="panel-heading">{{ $data->title }}</div>
+                <div class="panel-heading">{{ $data->title }}
+                    @auth
+                        @if($data->user_id == Auth::user()->user->user->id)
+                            <div class="text-right pull-right">
+                                <a href="/entity/{{ $data->entity_id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
+
+                            </div>
+                        @endif
+                    @endauth
+                </div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -84,6 +93,16 @@
                                 </div>
                                 <div class="entity-description">
                                     <div class="entity-info"> komentarze / Zobacz wiecej</div>
+
+                                    @auth()
+                                        @if ($comment->user_id == Auth::user()->user->user->id)
+                                            <div class="text-right pull-right">
+                                                <a href="/entity/{{ $data->entity_id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
+
+                                            </div>)
+
+                                        @endif
+                                    @endauth
                                 </div>
                             </div>
                         </a>
