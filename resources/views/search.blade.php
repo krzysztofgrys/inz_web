@@ -44,7 +44,7 @@
                     <div class="panel-body">
 
                         @foreach($data->users as $user)
-                            <p>{{$user->name}}</p>
+                            <a href="/profile/{{ $user->id }} "><p>{{$user->name}}</p></a>
 
                         @endforeach
 
@@ -62,7 +62,7 @@
                         <div class="panel-body">
 
                             @foreach($data->entries as $entry)
-                                <p>{{ dd($entry) }}</p>
+                                 <p>{{ dd($entry) }}</p>
 
                             @endforeach
 
