@@ -39,7 +39,6 @@ class ProfilController extends Controller
 
     public function show($id)
     {
-
         $user = Auth::user();
 
         $client = new Client([
@@ -60,8 +59,9 @@ class ProfilController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit($id, Request $request)
     {
+
         $user = Auth::user();
 
         $client = new Client([
@@ -74,7 +74,6 @@ class ProfilController extends Controller
         $result = $client->get(env('API') . '/v1/users/' . $id);
 
         $result = json_decode($result->getBody()->getContents());
-
 
         return view('editProfile', [
             'user' => $result->user
@@ -103,6 +102,8 @@ class ProfilController extends Controller
         ]);
 
         $result = $result->getBody()->getContents();
+
+        $request->session()->flash('success', 'Pomyślnie zaktualizowano dane.');
 
         return redirect()->route('showProfile', $result);
     }
