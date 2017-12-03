@@ -12,6 +12,8 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 
 class AddEntityController extends Controller
 {
@@ -49,12 +51,26 @@ class AddEntityController extends Controller
         ]);
 
 
-        $thumbnailName = md5($request->get('thumbnail') . time());
-        $result        = $client->post(env('API') . '/v1/entity', [
+        $file = $request->file('thumbnail');
+//        $tmpStorage = Storage::get(');
+        $path = Storage::disk('local')->getAdapter()->getPathPrefix();
+
+//        dd($tmpStorage);
+        $imageName = md5($request->get('thumbnail') . time()) . '.' . $file->getClientOriginalExtension();
+        $file->move($path . 'image/tmp', $imageName);
+
+
+        $manager = new ImageManager(array('driver' => 'gd'));
+//        $contents = Storage::disk('local')->get($path . 'image/tmp/' . $imageName);
+        $contents = storage_path('app/public/image/tmp/' . $imageName);
+
+        $avatar = $manager->make($contents)->resize(100, 100)->save(storage_path('app/public/image/entity/' . $imageName));
+
+        $result = $client->post(env('API') . '/v1/entity', [
             'form_params' => [
                 'title'         => $request->get('title'),
                 'description'   => $request->get('description'),
-                'thumbnail'         => $thumbnailName,
+                'thumbnail'     => $imageName,
                 'url'           => $request->get('url'),
                 'own_input'     => $request->get('own_input'),
                 'selected_type' => $request->get('selected_type')

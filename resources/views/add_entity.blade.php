@@ -12,7 +12,7 @@
                 <div class="panel-heading">Dodaj Wpis</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('addEntity') }}">
+                    <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('addEntity') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -47,7 +47,7 @@
                             <label for="media" class="col-md-2 control-label">Miniaturka:</label>
 
                             <div class="col-md-8">
-                                <input id="thumbnail" type="file" class="form-control" name="thumbnail" required>
+                                <input id="thumbnail" type="file" class="form-control" name="thumbnail" accept="image/*" required >
 
                                 @if ($errors->has('thumbnail'))
                                     <span class="help-block">

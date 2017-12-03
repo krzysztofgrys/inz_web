@@ -3,7 +3,9 @@
 @section('content')
 
     <div class="row">
-
+        <img class="media-object"
+             src="{{ $image }}"
+             alt="Kurt">
         {{--@if(!isset($data->data))--}}
         {{--@include('common.flash', ['type' => 'info', 'content' => 'No images found.'])--}}
         {{--@endif--}}

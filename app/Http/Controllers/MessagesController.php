@@ -72,10 +72,8 @@ class MessagesController extends Controller
 
     public function sendMessage(Request $request){
 
-
         $receiver = $request->get('receiver');
         $message = $request->get('body');
-
 
         $user = Auth::user();
 
@@ -94,12 +92,6 @@ class MessagesController extends Controller
             ]
         ]);
 
-
         return redirect()->route('message', ['id' => $result->getBody()->getContents()]);
-
-
     }
-
-
-
 }

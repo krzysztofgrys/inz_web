@@ -33,7 +33,7 @@
                                             </div>
                                             <div class="col-md-4"><a href="#">
                                                     <img class="media-object"
-                                                         src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                                         src="{{ asset('storage/image/entity/'.$data->thumbnail) }}"
                                                          alt="Kurt">
                                                 </a></div>
 

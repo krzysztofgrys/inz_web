@@ -11,20 +11,20 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-
     }
 
     public function index()
     {
-
-        $user = Auth::user();
-
+        $user   = Auth::user();
         $client = new Client([
             'headers' => [
                 'Authorization' => 'Bearer ' . $user->getRememberToken(),
@@ -32,10 +32,8 @@ class ProfilController extends Controller
             ]
         ]);
 
-
         return view('my');
     }
-
 
     public function show($id)
     {
@@ -49,13 +47,23 @@ class ProfilController extends Controller
         ]);
 
         $result = $client->get(env('API') . '/v1/users/' . $id);
-
         $result = json_decode($result->getBody()->getContents());
+
+
+//        $image->make('public/image/avatars/default.png');
+
+        $contents = Storage::get('/image/avatars/default.png');
+
+        $manager = new ImageManager(array('driver' => 'gd'));
+
+
+        $image = $manager->make($contents)->resize(300, 200);
 
 
         return view('my', [
             'user'         => $result->user,
-            'userEntities' => $result->user_entities
+            'userEntities' => $result->user_entities,
+            'image'        => $image
         ]);
     }
 
@@ -100,6 +108,7 @@ class ProfilController extends Controller
                 'fullname'    => $request->get('fullname')
             ]
         ]);
+
 
         $result = $result->getBody()->getContents();
 
