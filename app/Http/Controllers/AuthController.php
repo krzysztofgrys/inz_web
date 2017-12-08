@@ -36,7 +36,23 @@ class AuthController extends Controller
             ]
         ]);
 
+        dd($result);
+
 
     }
 
+
+    public function send($service){
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        $result = $client->get(env('API') . '/v1/login/' . $service);
+
+        return redirect($result->getBody()->getContents());
+//        dd();
+
+    }
 }
