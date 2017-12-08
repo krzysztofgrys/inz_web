@@ -43,6 +43,7 @@ class AuthController extends Controller
         $this->user = $user;
 
         Auth::login($user, true);
+        Auth::user();
 
         return redirect()->intended('/');
 
