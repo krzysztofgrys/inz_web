@@ -41,7 +41,8 @@ class AuthController extends Controller
         $user       = json_decode($result->getBody()->getContents())->success;
         $user       = new User($user);
         $this->user = $user;
-        session()->push('user', $user);
+
+        Auth::login($user, true);
 
         return redirect()->intended('/');
 
