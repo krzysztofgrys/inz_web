@@ -36,3 +36,4 @@ Route::get('/user/search', 'UserController@search')->name('userAutocomplete');
 Route::get('/profile/{id}', 'ProfilController@show')->name('showProfile');
 Route::get('/profile/{id}/edit', 'ProfilController@edit')->name('editProfile');
 Route::post('/profile/{id}/edit', 'ProfilController@editProfile')->name('saveEditedProfile');
+Route::get('/login/{service}/callback', 'AuthController@auth')->name('oauth');

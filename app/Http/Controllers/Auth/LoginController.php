@@ -67,4 +67,11 @@ class LoginController extends Controller
         return redirect()->intended('/');
     }
 
+
+    public function auth(Request $request, $service){
+
+
+
+    }
+
 }
