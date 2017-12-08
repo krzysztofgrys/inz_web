@@ -73,7 +73,7 @@ class RegisterController extends Controller
             ]
         ]);
 
-        dd('OK');
+        return redirect()->intended('/');
     }
 
     /**

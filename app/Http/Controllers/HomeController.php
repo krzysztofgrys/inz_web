@@ -2,51 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Gateways\CommentsGateway;
+use App\Gateways\RateGateway;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use App\Gateways\EntitiesGateway;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $entitiesGateway;
+    protected $commentsGateway;
+    protected $rateGateway;
+
+    public function __construct(EntitiesGateway $entitiesGateway, CommentsGateway $commentsGateway, RateGateway $rateGateway)
     {
+        $this->entitiesGateway = $entitiesGateway;
+        $this->commentsGateway = $commentsGateway;
+        $this->rateGateway     = $rateGateway;
         $this->middleware('auth', ['only' => ['rate']]);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
-        $client = new Client([
-            'headers' => [
-                'Accept' => 'application/json'
-            ]
-        ]);
+        $entities = $this->entitiesGateway->getEntities();
 
-        $result = $client->get(env('API') . '/v1/entity');
-
-        return view('home', ['datas' => json_decode($result->getBody()->getContents())->data]);
+        return view('home', ['datas' => json_decode($entities->getBody()->getContents())->data]);
     }
 
     public function show($id)
     {
-        $client = new Client([
-            'headers' => [
-                'Accept' => 'application/json'
-            ]
-        ]);
-
-        $result   = $client->get(env('API') . '/v1/entity/' . $id);
-        $comments = $client->get(env('API') . '/v1/comment/' . $id);
+        $result   = $this->entitiesGateway->getEntity($id);
+        $comments = $this->commentsGateway->getComments($id);
 
 
         return view('entity',
@@ -61,70 +49,34 @@ class HomeController extends Controller
     {
 
         $user   = Auth::user();
-        $client = new Client([
-            'headers' => [
-                'Authorization' => 'Bearer ' . $user->getRememberToken(),
-                'Accept'        => 'application/json'
-            ]
-        ]);
-
-        $result = $client->post(env('API') . '/v1/rate', [
-            'form_params' => [
-                'entityId' => $id
-            ]
-        ]);
+        $result = $this->rateGateway->rateEntity($user, $id);
 
         return $result->getBody()->getContents();
     }
 
 
-    public function addComment(Request $request, $id){
-
-
-        $user = Auth::user();
-
-        $client = new Client([
-            'headers' => [
-                'Authorization' => 'Bearer ' . $user->getRememberToken(),
-                'Accept'        => 'application/json'
-            ]
-        ]);
-
-
-        $result        = $client->post(env('API') . '/v1/comment', [
-            'form_params' => [
-                'entity'         => $id,
-                'comment'   => $request->get('comment'),
-            ]
-        ]);
+    public function addComment(Request $request, $id)
+    {
+        $user    = Auth::user();
+        $comment = $request->get('comment');
+        $result  = $this->commentsGateway->addComment($user, $id, $comment);
 
         return redirect()->route('showEntity', ['id' => $result->getBody()->getContents()]);
     }
 
-    public function delete(Request $request, $id){
-
+    public function delete(Request $request, $id)
+    {
         $user = Auth::user();
 
-        $client = new Client([
-            'headers' => [
-                'Authorization' => 'Bearer ' . $user->getRememberToken(),
-                'Accept'        => 'application/json'
-            ]
-        ]);
-
-
-        $result        = $client->delete(env('API') . '/v1/entity/'.$id);
+        $result = $this->entitiesGateway->deleteEntity($user, $id);
         $result = $result->getBody()->getContents();
 
-        if($result=='ok'){
+        if ($result == 'ok') {
             $request->session()->flash('success', 'Usunięto');
-        }else{
+        } else {
             $request->session()->flash('error', 'Blad');
-
         }
 
         return redirect()->route('home');
     }
-
-
 }

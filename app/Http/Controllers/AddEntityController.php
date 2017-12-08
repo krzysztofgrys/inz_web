@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Gateways\EntitiesGateway;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,21 +19,15 @@ use Intervention\Image\ImageManager;
 class AddEntityController extends Controller
 {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $entitiesGateway;
+
+    public function __construct(EntitiesGateway $entitiesGateway)
     {
+        $this->entitiesGateway = $entitiesGateway;
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('add_entity');
@@ -40,43 +35,22 @@ class AddEntityController extends Controller
 
     public function store(Request $request)
     {
-
         $user = Auth::user();
-
-        $client = new Client([
-            'headers' => [
-                'Authorization' => 'Bearer ' . $user->getRememberToken(),
-                'Accept'        => 'application/json'
-            ]
-        ]);
 
 
         $file = $request->file('thumbnail');
-//        $tmpStorage = Storage::get(');
         $path = Storage::disk('local')->getAdapter()->getPathPrefix();
 
-//        dd($tmpStorage);
         $imageName = md5($request->get('thumbnail') . time()) . '.' . $file->getClientOriginalExtension();
         $file->move($path . 'image/tmp', $imageName);
 
 
-        $manager = new ImageManager(array('driver' => 'gd'));
-//        $contents = Storage::disk('local')->get($path . 'image/tmp/' . $imageName);
+        $manager  = new ImageManager(array('driver' => 'gd'));
         $contents = storage_path('app/public/image/tmp/' . $imageName);
 
         $avatar = $manager->make($contents)->resize(100, 100)->save(storage_path('app/public/image/entity/' . $imageName));
 
-        $result = $client->post(env('API') . '/v1/entity', [
-            'form_params' => [
-                'title'         => $request->get('title'),
-                'description'   => $request->get('description'),
-                'thumbnail'     => $imageName,
-                'url'           => $request->get('url'),
-                'own_input'     => $request->get('own_input'),
-                'selected_type' => $request->get('selected_type')
-
-            ]
-        ]);
+        $result = $this->entitiesGateway->addEntity($user, $request->get('title'), $request->get('description'), $imageName, $request->get('url'));
 
         return redirect()->route('showEntity', ['id' => $result->getBody()->getContents()]);
     }

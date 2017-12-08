@@ -41,16 +41,17 @@
                                         </div>
                                     </div>
 
-                                    <a href="{{  '/entity/' . $data->id }}">
 
-                                        <div class="entity-right">
-                                            <div class="entity-title">{{ $data->title }}</div>
-                                            <div class="entity-description">
-                                                {{ $data->description }}
+                                    <div class="entity-right">
+                                        <div class="entity-title">{{ $data->title }}</div>
+                                        <div class="entity-description">
+                                            {{ $data->description }}
+                                            <a href="{{  '/entity/' . $data->id }}">
                                                 <div class="entity-info"> komentarze / Zobacz wiecej</div>
-                                            </div>
+                                            </a>
                                         </div>
-                                    </a>
+                                    </div>
+
                                 </div>
                             @endforeach
 

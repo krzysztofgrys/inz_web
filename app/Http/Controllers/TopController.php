@@ -23,7 +23,6 @@ class TopController extends Controller
 
     public function index()
     {
-
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json'
@@ -32,7 +31,6 @@ class TopController extends Controller
 
         $result = $client->get(env('API') . '/v1/top');
         return view('top', ['datas' => json_decode($result->getBody()->getContents())->data]);
-
     }
 
 

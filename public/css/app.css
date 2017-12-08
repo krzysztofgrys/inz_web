@@ -8396,6 +8396,9 @@ button.close {
   }
 }
 
+. entity {
+  border: dashed;
+}
 .entity-info {
   text-align: right;
 }
