@@ -36,7 +36,7 @@ class AuthController extends Controller
             ]
         ]);
 
-        dd($result);
+        dd($result->getBody()->getContents());
 
 
     }
