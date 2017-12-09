@@ -64,12 +64,14 @@ class LoginController extends Controller
 
         $user = Auth::user();
 
+        $request->session()->flash('info', 'Zalogowano pomyślnie');
+
         return redirect()->intended('/');
     }
 
 
-    public function auth(Request $request, $service){
-
+    public function auth(Request $request, $service)
+    {
 
 
     }

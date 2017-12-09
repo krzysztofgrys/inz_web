@@ -3,7 +3,8 @@
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>@if(isset($title))
                 {!! $title  !!}
-            @endif</strong> @if(isset($content))
+            @endif</strong>
+        @if(isset($content))
             {!! $content  !!}
         @endif
     </div>

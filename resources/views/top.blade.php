@@ -26,10 +26,7 @@
                     @endif
 
                     @if (empty($datas))
-                        <h1>Brak danych, Zmień zakres</h1>
-                        <h3>
-
-                        </h3>
+                        <h5>Nic tu nie ma</h5>
                     @else
                         <div class="media">
 

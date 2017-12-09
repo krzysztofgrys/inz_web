@@ -16,37 +16,46 @@ use Illuminate\Support\Facades\Auth;
 class TopController extends Controller
 {
 
-    public function __construct()
-    {
+    protected $client;
 
-    }
-
-    public function index()
+    public function __construct(Client $client)
     {
-        $client = new Client([
+        $this->client = new Client([
             'headers' => [
                 'Accept' => 'application/json'
             ]
         ]);
+    }
 
-        $result = $client->get(env('API') . '/v1/top');
-        return view('top', ['datas' => json_decode($result->getBody()->getContents())->data]);
+    public function index(Request $request)
+    {
+        $request->session()->flush();
+
+        $result = $this->client->get(env('API') . '/v1/top');
+
+        $result = json_decode($result->getBody()->getContents())->data;
+
+        if (empty($result)) {
+            $request->session()->flash('warning', ['title' => 'Brak danych', 'content' => 'Zmień zakres czasu i spróbuj ponownie.']);
+        } else {
+            $request->session()->forget('warning');
+        }
+
+        return view('top', ['datas' => $result]);
     }
 
 
-    public function show($time)
+    public function show(Request $request, $time)
     {
+        $request->session()->flush();
 
 
-        $client = new Client([
-            'headers' => [
-                'Accept' => 'application/json'
-            ]
-        ]);
+        $result = $this->client->get(env('API') . '/v1/top/' . $time);
+        $result = json_decode($result->getBody()->getContents())->data;
+        if (empty($result)) {
+            $request->session()->flash('warning', ['title' => 'Brak danych', 'content' => 'Zmień zakres czasu i spróbuj ponownie.']);
+        }
 
-
-        $result = $client->get(env('API') . '/v1/top/' . $time);
-
-        return view('top', ['datas' => json_decode($result->getBody()->getContents())->data]);
+        return view('top', ['datas' => $result]);
     }
 }

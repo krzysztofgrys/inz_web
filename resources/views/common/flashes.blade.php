@@ -12,6 +12,13 @@
       'content' => Layout::content(Session::get('info'))
     ])
 @endif
+@if(Session::has('warning'))
+    @include('common.flash', [
+      'type' => 'warning',
+      'title' => Layout::title(Session::get('warning')),
+      'content' => Layout::content(Session::get('warning'))
+    ])
+@endif
 @if(Session::has('error'))
     @include('common.flash', [
       'type' => 'danger',
@@ -19,3 +26,4 @@
       'content' => Layout::content(Session::get('error'))
     ])
 @endif
+

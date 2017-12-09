@@ -9,19 +9,19 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 .circle {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
-  background: rgb(255,147,0);
+  background: #ff9300;
   color: white;
   font-size: 20px;
-  line-height: 50px;
+  line-height: 60px;
   text-align: center;
 }
 
 .wrapper {
-  border : 2px solid #000;
-  overflow:hidden;
+  border: 2px solid #000;
+  overflow: hidden;
 }
 
 .wrapper div {
@@ -29,43 +29,66 @@
   padding: 10px;
 }
 
-.entity{
-
-}
 .entity-left {
   background-color: white;
-  float:left;
-  margin-right:5px;
-  width:auto;
-  margin:5px;
-
+  float: left;
+  width: auto;
+  margin: 6px;
 }
+
+.entity-title{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.entity-description{
+  font-size: 14px;
+  min-height: 70px;
+}
+
 .entity-right {
   background-color: white;
-  overflow:hidden;
-  margin:5px;
-  min-height:140px;
+  overflow: hidden;
+  margin: 5px;
+  min-height: 100px;
 }
 
 @media screen and (max-width: 400px) {
   #one {
     float: none;
-    margin-right:0;
-    width:auto;
-    border:0;
-    border-bottom:2px solid #000;
+    margin-right: 0;
+    width: auto;
+    border: 0;
+    border-bottom: 2px solid #000;
   }
 }
 
-.entity-info{
+.entity {
+  border: 1px solid rgba(0, 0, 0, .2);
+  margin-bottom: 5px;
+}
+/*.entity-info {*/
+/*margin: 0;*/
+/*width: 100%;*/
+/*}*/
+
+.entity-info-right{
   text-align: right;
+  font-size: 15px;
+
+}
+
+.entity-info-left{
+  text-align: left;
+  font-size: 15px;
+
 }
 
 
 .messages {
   border: 2px solid #000;
   overflow: hidden;
-  margin: 5px
+  margin: 5px;
 }
 
 .messages div {
@@ -86,33 +109,36 @@
   overflow: hidden;
   margin: 5px;
   font-size: 30px;
-  min-height: 140px;
+  min-height: 150px;
 }
 
-.message-receiver{
+.message-receiver {
   background-color: white;
   float: left;
   width: auto;
   margin: 5px;
 }
 
-.message-sender{
+.message-sender {
   background-color: blue;
   float: right;
   width: auto;
   margin: 5px;
 }
 
-
-.message div{
+.message div {
   margin: 5px;
   min-height: 70px;
   padding: 10px;
 }
 
-.message{
+.message {
   border: 2px solid #000;
   overflow: hidden;
-  margin: 5px
+  margin: 5px;
+}
 
+a:link, a:visited {
+  text-decoration: none;
+  color: #777;
 }

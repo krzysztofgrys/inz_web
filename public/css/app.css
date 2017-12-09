@@ -8351,13 +8351,13 @@ button.close {
 }
 
 .circle {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   background: #ff9300;
   color: white;
   font-size: 20px;
-  line-height: 50px;
+  line-height: 60px;
   text-align: center;
 }
 
@@ -8374,16 +8374,25 @@ button.close {
 .entity-left {
   background-color: white;
   float: left;
-  margin-right: 5px;
   width: auto;
-  margin: 5px;
+  margin: 6px;
+}
+
+.entity-title{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.entity-description{
+  font-size: 14px;
+  min-height: 70px;
 }
 
 .entity-right {
   background-color: white;
   overflow: hidden;
   margin: 5px;
-  min-height: 140px;
+  min-height: 100px;
 }
 
 @media screen and (max-width: 400px) {
@@ -8396,12 +8405,27 @@ button.close {
   }
 }
 
-. entity {
-  border: dashed;
+.entity {
+  border: 1px solid rgba(0, 0, 0, .2);
+  margin-bottom: 5px;
 }
-.entity-info {
+/*.entity-info {*/
+  /*margin: 0;*/
+  /*width: 100%;*/
+/*}*/
+
+.entity-info-right{
   text-align: right;
+  font-size: 15px;
+
 }
+
+.entity-info-left{
+  text-align: left;
+  font-size: 15px;
+
+}
+
 
 .messages {
   border: 2px solid #000;
@@ -8427,7 +8451,7 @@ button.close {
   overflow: hidden;
   margin: 5px;
   font-size: 30px;
-  min-height: 140px;
+  min-height: 150px;
 }
 
 .message-receiver {
@@ -8455,4 +8479,10 @@ button.close {
   overflow: hidden;
   margin: 5px;
 }
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #777;
+}
+
 

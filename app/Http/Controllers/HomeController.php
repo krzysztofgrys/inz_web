@@ -23,8 +23,9 @@ class HomeController extends Controller
         $this->middleware('auth', ['only' => ['rate']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $request->session()->flush();
 
         $entities = $this->entitiesGateway->getEntities();
 

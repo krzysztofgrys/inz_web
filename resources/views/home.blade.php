@@ -23,36 +23,53 @@
                                     <div class="entity-left">
                                         <div class="row">
                                             <div class="col-md-4">
-
                                                 <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
-
-                                                <p>
-                                                    <button type="button" class="btn btn-info" onclick="reverseGeocodeAddress({{ $data->id }} )">Ocen</button>
-                                                </p>
-
                                             </div>
-                                            <div class="col-md-4"><a href="#">
+                                            <a href="{{  '/entity/' . $data->id }}">
+                                                <div class="col-md-4">
                                                     <img class="media-object"
                                                          src="{{ asset('storage/image/entity/'.$data->thumbnail) }}"
                                                          alt="Kurt">
-                                                </a></div>
-
-
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
 
 
                                     <div class="entity-right">
-                                        <div class="entity-title">{{ $data->title }}</div>
+                                        <a href="{{  '/entity/' . $data->id }}">
+                                            <div class="entity-title">{{ $data->title }}
+                                            </div>
+                                        </a>
                                         <div class="entity-description">
-                                            {{ $data->description }}
                                             <a href="{{  '/entity/' . $data->id }}">
-                                                <div class="entity-info"> komentarze / Zobacz wiecej</div>
+                                                {{ $data->description }}
                                             </a>
+                                            {{--<div class="entity-info">--}}
+                                            <div class="entity-info-left">
+                                                <a href="{{  '/profile/' . $data->user_id }}">
+                                                    <i class="fa fa-user"> dodał: {{ '@'.$data->user_name }}</i>
+                                                </a>
+                                                <strong> | </strong>
+                                                <i class="fa fa-calendar-check-o"> {{ $data->created_at->date }}</i>
+
+                                                <strong> | </strong>
+                                                <a href="{{  '/entity/' . $data->id }}">
+                                                    <i class="fa fa-globe"> domena:
+                                                        youtube.com</i>
+                                                </a>
+                                                <strong> | </strong>
+                                                <a href="{{  '/entity/' . $data->id }}">
+                                                    <i class="fa fa-comment"> zobacz komentarze</i>
+                                                </a>
+
+                                            </div>
+                                            {{--</div>--}}
                                         </div>
                                     </div>
 
                                 </div>
+
                             @endforeach
 
                             {{--</div>--}}

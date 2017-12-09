@@ -45,6 +45,9 @@ class AuthController extends Controller
 
         Auth::login($user, true);
 
+
+        $request->session()->flash('info', 'Zalogowano pomyślnie');
+
         return redirect()->intended('/');
 
 

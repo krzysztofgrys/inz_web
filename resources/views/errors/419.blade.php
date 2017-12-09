@@ -40,7 +40,9 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title"><strong> 500, </strong> Zaraz wracam!</div>
+        <div class="title"> Strona wygasła z powodu nieaktwyności
+            <br/><br/>
+            Odśwież i spróbuj ponownie</div>
     </div>
 </div>
 </body>
