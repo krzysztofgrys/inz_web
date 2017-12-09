@@ -22,8 +22,10 @@ class UserProvider implements \Illuminate\Contracts\Auth\UserProvider
         $result = $client->post(env('API').'/v1/login', [
             'form_params' => $credentials
         ]);
+
         $user = json_decode($result->getBody()->getContents())->success;
         $user = new User($user);
+
         $this->user = $user;
         session()->push('user', $user);
         return $user;

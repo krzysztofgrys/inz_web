@@ -29,7 +29,6 @@ class TopController extends Controller
 
     public function index(Request $request)
     {
-        $request->session()->flush();
 
         $result = $this->client->get(env('API') . '/v1/top');
 
@@ -47,7 +46,6 @@ class TopController extends Controller
 
     public function show(Request $request, $time)
     {
-        $request->session()->flush();
 
 
         $result = $this->client->get(env('API') . '/v1/top/' . $time);
