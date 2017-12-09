@@ -64,7 +64,7 @@
                                                     <i class="fa fa-user"> dodał: {{ '@'.$data->user_name }}</i>
                                                 </a>
                                                 <strong> | </strong>
-                                                <i class="fa fa-calendar-check-o"> {{ $data->created_at->date }}</i>
+                                                <i class="fa fa-calendar-check-o"> {{ $data->created_at }}</i>
 
                                                 <strong> | </strong>
                                                 <a href="{{  '/entity/' . $data->id }}">

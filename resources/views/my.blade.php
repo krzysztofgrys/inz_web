@@ -46,7 +46,6 @@
                     <div class="panel-body">
 
                         @foreach($userEntities as $data)
-
                             <div class="entity">
                                 <div class="entity-left">
                                     <div class="row">
@@ -75,11 +74,11 @@
                                         </a>
                                         {{--<div class="entity-info">--}}
                                         <div class="entity-info-left">
-                                            <a href="{{  '/profile/' . $data->user_id }}">
-                                                <i class="fa fa-user"> dodał: {{ '@'.$data->user_name }}</i>
+                                            <a href="{{  '/profile/' . $user->id }}">
+                                                <i class="fa fa-user"> dodał: {{ '@'.$user->name }}</i>
                                             </a>
                                             <strong> | </strong>
-                                            <i class="fa fa-calendar-check-o"> {{ $data->created_at->date }}</i>
+                                            <i class="fa fa-calendar-check-o"> {{ $data->created_at }}</i>
 
                                             <strong> | </strong>
                                             <a href="{{  '/entity/' . $data->id }}">
