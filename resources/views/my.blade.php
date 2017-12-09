@@ -44,40 +44,58 @@
                 <div class="panel-heading">Posty użytkownika:</div>
                 @if (!empty($userEntities))
                     <div class="panel-body">
-                        @foreach($userEntities as $userEntity)
+
+                        @foreach($userEntities as $data)
+
                             <div class="entity">
                                 <div class="entity-left">
                                     <div class="row">
                                         <div class="col-md-4">
-
-                                            <div class="circle"><i class="fa fa-btc"></i>{{ $userEntity->rating }}</div>
-
-                                            <p>
-                                                <button type="button" class="btn btn-info" onclick="reverseGeocodeAddress({{ $userEntity->id }} )">Ocen
-                                                </button>
-                                            </p>
-
+                                            <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
                                         </div>
-                                        <div class="col-md-4"><a href="#">
+                                        <a href="{{  '/entity/' . $data->id }}">
+                                            <div class="col-md-4">
                                                 <img class="media-object"
-                                                     src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                                     src="{{ asset('storage/image/entity/'.$data->thumbnail) }}"
                                                      alt="Kurt">
-                                            </a></div>
-
-
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
 
-                                <a href="{{  '/entity/' . $userEntity->id }}">
 
-                                    <div class="entity-right">
-                                        <div class="entity-title">{{ $userEntity->title }}</div>
-                                        <div class="entity-description">
-                                            {{ $userEntity->description }}
-                                            <div class="entity-info"> komentarze / Zobacz wiecej</div>
+                                <div class="entity-right">
+                                    <a href="{{  '/entity/' . $data->id }}">
+                                        <div class="entity-title">{{ $data->title }}
                                         </div>
+                                    </a>
+                                    <div class="entity-description">
+                                        <a href="{{  '/entity/' . $data->id }}">
+                                            {{ $data->description }}
+                                        </a>
+                                        {{--<div class="entity-info">--}}
+                                        <div class="entity-info-left">
+                                            <a href="{{  '/profile/' . $data->user_id }}">
+                                                <i class="fa fa-user"> dodał: {{ '@'.$data->user_name }}</i>
+                                            </a>
+                                            <strong> | </strong>
+                                            <i class="fa fa-calendar-check-o"> {{ $data->created_at->date }}</i>
+
+                                            <strong> | </strong>
+                                            <a href="{{  '/entity/' . $data->id }}">
+                                                <i class="fa fa-globe"> domena:
+                                                    youtube.com</i>
+                                            </a>
+                                            <strong> | </strong>
+                                            <a href="{{  '/entity/' . $data->id }}">
+                                                <i class="fa fa-comment"> zobacz komentarze</i>
+                                            </a>
+
+                                        </div>
+                                        {{--</div>--}}
                                     </div>
-                                </a>
+                                </div>
+
                             </div>
 
                         @endforeach
