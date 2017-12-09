@@ -36,11 +36,14 @@ class HomeController extends Controller
         $result   = $this->entitiesGateway->getEntity($id);
         $comments = $this->commentsGateway->getComments($id);
 
+        $data     = json_decode($result->getBody()->getContents())->data[0];
+        $comments = json_decode($comments->getBody()->getContents())->data;
 
         return view('entity',
             [
-                'data'     => json_decode($result->getBody()->getContents())->data[0],
-                'comments' => json_decode($comments->getBody()->getContents())->data
+                'data'           => $data,
+                'comments'       => $comments,
+                'comments_count' => count($comments)
             ]
         );
     }

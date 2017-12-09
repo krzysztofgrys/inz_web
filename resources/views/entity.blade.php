@@ -65,7 +65,7 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Komentarze:</div>
+        <div class="panel-heading">Komentarze {{ $comments_count.':' }}  </div>
         @if (!empty($comments))
             <div class="panel-body">
                 @if (session('status'))
@@ -78,35 +78,30 @@
                     <div class="entity">
                         <div class="entity-left">
                             <div class="row">
-                                <div class="col-md-4"><a href="#">
-                                        <img class="media-object"
-                                             src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                             alt="Kurt">
-                                    </a></div>
+                                <div class="col-md-4">
+                                    <img class="media-object"
+                                         src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                         alt="Kurt">
+                                </div>
                             </div>
                         </div>
 
-                        <a href="#">
-
-                            <div class="entity-right">
-                                <div class="entity-title">{{ $comment->comments }}
-                                </div>
-                                <div class="entity-description">
-                                    <div class="entity-info"> komentarze / Zobacz wiecej</div>
-
-                                    @auth()
-                                        @if ($comment->user_id == Auth::user()->user->user->id)
-                                            <div class="text-right pull-right">
-                                                <a href="/entity/{{ $data->entity_id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
-
-                                            </div>)
-
-                                        @endif
-                                    @endauth
-                                </div>
+                        <div class="entity-right">
+                            <div class="entity-title">{{ $comment->comments }}
                             </div>
-                        </a>
+                            <div class="entity-description">
 
+                                @auth()
+                                    @if ($comment->user_id == Auth::user()->user->user->id)
+                                        <div class="text-right pull-right">
+                                            <a href="/entity/{{ $data->entity_id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
+
+                                        </div>)
+
+                                    @endif
+                                @endauth
+                            </div>
+                        </div>
                     </div>
 
                 @endforeach
@@ -144,7 +139,7 @@
                     <div class="form-group">
                         <div class="col-md-12 col-md-offset-9">
                             <button type="submit" class="btn btn-primary">
-                                Didaj
+                                Dodaj
                             </button>
                         </div>
                     </div>

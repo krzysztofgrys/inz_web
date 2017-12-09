@@ -51,16 +51,37 @@
                                                     <i class="fa fa-user"> dodał: {{ '@'.$data->user_name }}</i>
                                                 </a>
                                                 <strong> | </strong>
-                                                <i class="fa fa-calendar-check-o"> {{ $data->created_at->date }}</i>
+                                                <i class="fa fa-calendar-check-o"> {{ $data->created_at }}</i>
 
                                                 <strong> | </strong>
-                                                <a href="{{  '/entity/' . $data->id }}">
+                                                <a href="{{  $data->url }}">
                                                     <i class="fa fa-globe"> domena:
-                                                        youtube.com</i>
+                                                        {{ $data->domain }}</i>
                                                 </a>
                                                 <strong> | </strong>
                                                 <a href="{{  '/entity/' . $data->id }}">
-                                                    <i class="fa fa-comment"> zobacz komentarze</i>
+                                                    <i class="fa fa-comment">
+                                                        @switch($data->comments)
+                                                            @case(0)
+                                                            Dodaj komentarz
+                                                            @break
+                                                            @case(1)
+                                                            {{ $data->comments }} komentarz
+                                                            @break
+                                                            @case(2)
+                                                            @case(3)
+                                                            @case(4)
+                                                            @case(5)
+                                                            {{ $data->comments }} komentarze
+                                                            @break
+                                                            @default
+                                                            {{ $data->comments }} komentarzy
+
+
+                                                        @endSwitch
+
+
+                                                    </i>
                                                 </a>
 
                                             </div>

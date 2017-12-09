@@ -47,7 +47,7 @@
                             <label for="media" class="col-md-2 control-label">Miniaturka:</label>
 
                             <div class="col-md-8">
-                                <input id="thumbnail" type="file" class="form-control" name="thumbnail" accept="image/*" required >
+                                <input id="thumbnail" type="file" class="form-control" name="thumbnail" accept="image/*" required>
 
                                 @if ($errors->has('thumbnail'))
                                     <span class="help-block">
@@ -56,71 +56,20 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="media" class="col-md-2 control-label">Wybierz typ wpisu:</label>
-                            <div class="col-md-8">
-                                <ul class="nav nav-pills mb-2 " id="type" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="url_type" data-toggle="pill" href="#pills-profile" role="tab"
-                                           aria-controls="pills-profile" aria-selected="false" onclick="setValue('url')">URL</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="own_type" data-toggle="pill" href="#pills-contact" role="tab"
-                                           aria-controls="pills-contact" aria-selected="false" onclick="setValue('own')">Własna Treść</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-                                <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                                    <label for="url" class="col-md-2 control-label">Url:</label>
-
-                                    <div class="col-md-8">
-                                        <input id="url" type="url" class="form-control" name="url">
-
-                                        @if ($errors->has('url'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('url') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-                                <div class="form-group{{ $errors->has('own_input') ? ' has-error' : '' }}">
-                                    <label for="own_input" class="col-md-2 control-label">Wpisz:</label>
-
-                                    <div class="col-md-8">
-                                        <textarea id="own" cols="100" rows="5" class="form-control" name="own_input"></textarea>
-
-                                        @if ($errors->has('own_input'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('own_input') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            {{--<label for="media" class="col-md-2 control-label">Miniaturka:</label>--}}
+                        <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                            <label for="url" class="col-md-2 control-label">Url:</label>
 
                             <div class="col-md-8">
-                                <input id="selected_type" type="hidden" class="form-control" name="selected_type" required>
-
-                                @if ($errors->has('selected_type'))
+                                <input id="url" type="url" class="form-control" name="url" placeholder=" http://www.google.com" required>
+                                @if ($errors->has('url'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('selected_type') }}</strong>
+                                        <strong>{{ $errors->first('url') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
