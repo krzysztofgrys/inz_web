@@ -18,7 +18,7 @@
                         <div class="media">
 
                             @foreach($datas as $data)
-
+                                
                                 <div class="entity">
                                     <div class="entity-left">
                                         <div class="row">

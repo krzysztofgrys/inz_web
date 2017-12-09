@@ -8356,9 +8356,12 @@ button.close {
   border-radius: 50%;
   background: #ff9300;
   color: white;
-  font-size: 20px;
+  font-size: 26px;
   line-height: 60px;
   text-align: center;
+  font-weight: 100;
+  font-family: 'Lato';
+
 }
 
 .wrapper {
