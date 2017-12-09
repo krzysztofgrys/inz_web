@@ -38,7 +38,6 @@ class CommentsGateway
             ]
         ]);
 
-
         $result = $client->post(env('API') . '/v1/comment', [
             'form_params' => [
                 'entity'  => $id,

@@ -46,6 +46,7 @@
                         <li><a href="{{ route('messages') }}">Wiadomości</a></li>
                     @endauth
                     <li><a href="{{ route('search') }}">Szukaj</a></li>
+                    <li><a href="{{ route('currency') }}">Kurs Kryptowalut</a></li>
 
 
                 </ul>

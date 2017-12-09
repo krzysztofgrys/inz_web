@@ -38,3 +38,5 @@ Route::get('/profile/{id}/edit', 'ProfilController@edit')->name('editProfile');
 Route::post('/profile/{id}/edit', 'ProfilController@editProfile')->name('saveEditedProfile');
 Route::get('/login/{service}/callback', 'AuthController@auth')->name('oauth');
 Route::get('/login/{service}', 'AuthController@send')->name('send');
+Route::get('/currency', 'CurrencyController@index')->name('currency');
+Route::get('/currency/{currency}', 'CurrencyController@show')->name('changeCurrency');

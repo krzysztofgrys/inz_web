@@ -19,61 +19,55 @@ class UserProvider implements \Illuminate\Contracts\Auth\UserProvider
     public function retrieveByCredentials(array $credentials)
     {
         $client = new Client();
-        $result = $client->post(env('API').'/v1/login', [
+        $result = $client->post(env('API') . '/v1/login', [
             'form_params' => $credentials
         ]);
 
-        $user = json_decode($result->getBody()->getContents())->success;
+        $user = json_decode($result->getBody()->getContents())->data;
         $user = new User($user);
 
         $this->user = $user;
         session()->push('user', $user);
+
         return $user;
     }
 
     public function retrieveById($identifier)
     {
-//        $client = new Client();
-//        $result = $client->get(env('API').'/v1/users/'.$identifier);
-//
-//        $user = json_decode($result->getBody()->getContents());
-//        $user = new User($user);
-//        $this->user = $user;
-//        return $user;
-
-        if( ($user = session()->get('user')) ){
+        if (($user = session()->get('user'))) {
             return $user[0];
         }
 
         return null;
-
     }
+
     public function retrieveByToken($identifier, $token)
     {
         return 'retrieveByToken';
 
     }
+
     public function updateRememberToken(Authenticatable $user, $token)
     {
         return 'setRememberToken';
 
     }
+
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
         $client = new Client();
-        $result = $client->post(env('API').'/v1/login', [
+        $result = $client->post(env('API') . '/v1/login', [
             'form_params' => $credentials
         ]);
 
-        $user1 = json_decode($result->getBody()->getContents())->success;
+        $user1 = json_decode($result->getBody()->getContents())->data;
         $user1 = new User($user1);
 
-        if($user->getAuthIdentifier() == $user1->getAuthIdentifier()){
+        if ($user->getAuthIdentifier() == $user1->getAuthIdentifier()) {
             return true;
         }
+
         return false;
-
-
     }
 
 }
