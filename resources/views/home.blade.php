@@ -13,7 +13,7 @@
                         </div>
                     @endif
                     @if (empty($datas))
-                        <h1>Brak danych</h1>
+                        <h5>Brak danych</h5>
                     @else
                         <div class="media">
 

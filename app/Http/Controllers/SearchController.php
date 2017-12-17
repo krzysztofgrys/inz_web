@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\LayoutHelper;
 
 
 class SearchController extends Controller
@@ -22,14 +23,17 @@ class SearchController extends Controller
 
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        LayoutHelper::flushAllMessages($request);
+
         return view('search');
     }
 
 
     public function show(Request $request)
     {
+        LayoutHelper::flushAllMessages($request);
 
         $client = new Client([
             'Accept' => 'application/json'
@@ -57,7 +61,6 @@ class SearchController extends Controller
             $request->session()->flash('error', 'Brak wyników.');
         }
 
-
-        return view('search', ['data' => $result]);
+        return view('search', ['data' => $result, 'searched' => $phase]);
     }
 }

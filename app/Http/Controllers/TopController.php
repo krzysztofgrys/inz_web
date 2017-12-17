@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Helpers\LayoutHelper;
 
 
 class TopController extends Controller
@@ -29,6 +29,7 @@ class TopController extends Controller
 
     public function index(Request $request)
     {
+        LayoutHelper::flushAllMessages($request);
 
         $result = $this->client->get(env('API') . '/v1/top');
 
@@ -46,10 +47,11 @@ class TopController extends Controller
 
     public function show(Request $request, $time)
     {
-
+        LayoutHelper::flushAllMessages($request);
 
         $result = $this->client->get(env('API') . '/v1/top/' . $time);
         $result = json_decode($result->getBody()->getContents())->data;
+
         if (empty($result)) {
             $request->session()->flash('warning', ['title' => 'Brak danych', 'content' => 'Zmień zakres czasu i spróbuj ponownie.']);
         }

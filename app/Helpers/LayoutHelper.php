@@ -22,4 +22,11 @@ class LayoutHelper
         return array_key_exists('content', $flash) ? $flash['content'] : '';
     }
 
+    public static function flushAllMessages($request){
+        $request->session()->forget('info');
+        $request->session()->forget('warning');
+        $request->session()->forget('error');
+        $request->session()->forget('success');
+    }
+
 }

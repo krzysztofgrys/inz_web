@@ -62,18 +62,16 @@ class LoginController extends Controller
             'password' => $request['password'],
         ]);
 
+        if ($user == false) {
+            $request->session()->flash('error', ['title' => 'Błąd', 'content' => 'Nieprawidłowy e-mail lub hasło']);
+
+            return redirect()->intended('/login');
+        }
+
         $user = Auth::user();
+
+        $request->session()->flash('info', ['title' => 'Zalogowano pomyślnie', 'content' => 'Witaj ' . $user->user->user->name]);
 
         return redirect()->intended('/');
     }
-
-
-    public function auth(R $service){
-
-
-
-
-
-    }
-
 }

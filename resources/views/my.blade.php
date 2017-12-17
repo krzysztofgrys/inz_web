@@ -3,13 +3,6 @@
 @section('content')
 
     <div class="row">
-        <img class="media-object"
-             src="{{ $image }}"
-             alt="Kurt">
-        {{--@if(!isset($data->data))--}}
-        {{--@include('common.flash', ['type' => 'info', 'content' => 'No images found.'])--}}
-        {{--@endif--}}
-
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading font-weight-bold"> {{$user->name }}

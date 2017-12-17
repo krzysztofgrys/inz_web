@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Gateways\EntitiesGateway;
+use App\Helpers\LayoutHelper;
 
 class HomeController extends Controller
 {
@@ -21,28 +22,38 @@ class HomeController extends Controller
         $this->commentsGateway = $commentsGateway;
         $this->rateGateway     = $rateGateway;
         $this->middleware('auth', ['only' => ['rate']]);
+
     }
 
     public function index(Request $request)
     {
+        $entities =json_decode($this->entitiesGateway->getEntities()->getBody()->getContents());
 
-        $entities = $this->entitiesGateway->getEntities();
+        if(isset($entities->error)){
+            $data = [];
+            $request->session()->flash('info', ['title' => 'Brak wpisów', 'content' => '<a href=/add> Kliknij tutaj, aby dodać pierwszy wpis!</a>']);
 
-        return view('home', ['datas' => json_decode($entities->getBody()->getContents())->data]);
+        }else{
+            $data = $entities->data;
+        }
+
+        return view('home', ['datas' => $data]);
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $result   = $this->entitiesGateway->getEntity($id);
-        $comments = $this->commentsGateway->getComments($id);
 
-        $data     = json_decode($result->getBody()->getContents())->data[0];
-        $comments = json_decode($comments->getBody()->getContents())->data;
+        $result   = json_decode($this->entitiesGateway->getEntity($id)->getBody()->getContents());
+        $comments = json_decode($this->commentsGateway->getComments($id)->getBody()->getContents());
+
+        if(isset($result->error)){
+            abort(404, 'Brak wpisu o danym ID');
+        }
 
         return view('entity',
             [
-                'data'           => $data,
-                'comments'       => $comments,
+                'data'           => $result->data[0],
+                'comments'       => $comments->data,
                 'comments_count' => count($comments)
             ]
         );
@@ -60,6 +71,8 @@ class HomeController extends Controller
 
     public function addComment(Request $request, $id)
     {
+        LayoutHelper::flushAllMessages($request);
+
         $user    = Auth::user();
         $comment = $request->get('comment');
         $result  = $this->commentsGateway->addComment($user, $id, $comment);
@@ -70,6 +83,7 @@ class HomeController extends Controller
     public function delete(Request $request, $id)
     {
         $user = Auth::user();
+        LayoutHelper::flushAllMessages($request);
 
         $result = $this->entitiesGateway->deleteEntity($user, $id);
         $result = $result->getBody()->getContents();

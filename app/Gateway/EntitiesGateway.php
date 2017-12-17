@@ -21,9 +21,9 @@ class EntitiesGateway
             'headers' => [
                 'Accept' => 'application/json'
             ]
-        ]);
+        ], ['exceptions' => false]);
 
-        $result = $client->get(env('API') . '/v1/entity');
+        $result = $client->get(env('API') . '/v1/entity', ['http_errors' => false]);
 
         return $result;
     }
@@ -46,7 +46,8 @@ class EntitiesGateway
                 'description' => $description,
                 'thumbnail'   => $thumbnail,
                 'url'         => $url,
-            ]
+            ],
+            ['http_errors' => false]
         ]);
 
         return $result;
@@ -60,7 +61,7 @@ class EntitiesGateway
             ]
         ]);
 
-        $result = $client->get(env('API') . '/v1/entity/' . $entity);
+        $result = $client->get(env('API') . '/v1/entity/' . $entity, ['http_errors' => false]);
 
         return $result;
     }
@@ -74,12 +75,13 @@ class EntitiesGateway
             ]
         ]);
 
-        $result = $client->delete(env('API') . '/v1/entity/' . $id);
+        $result = $client->delete(env('API') . '/v1/entity/' . $id, ['http_errors' => false]);
 
         return $result;
     }
 
-    public function authenticatedGetEntity(){
+    public function authenticatedGetEntity()
+    {
 
     }
 }

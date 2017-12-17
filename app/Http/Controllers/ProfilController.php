@@ -49,9 +49,6 @@ class ProfilController extends Controller
         $result = $client->get(env('API') . '/v1/users/' . $id);
         $result = json_decode($result->getBody()->getContents());
 
-
-//        $image->make('public/image/avatars/default.png');
-
         $contents = Storage::get('/image/avatars/default.png');
 
         $manager = new ImageManager(array('driver' => 'gd'));

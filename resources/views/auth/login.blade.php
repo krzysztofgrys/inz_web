@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--@if(isset($error))--}}
+        {{--<div class="alert alert-{{ $type }} alert-dismissable fade in">--}}
+            {{--<div class="alert-close" onclick="$('.alert').hide()">--}}
+                {{--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--}}
+                {{--<strong>Błąd!</strong>--}}
+                {{--Niepoprawna nazwa użytkownika lub hasło--}}
+            {{--</div>--}}
+        {{--</div>--}}
+
+    {{--@endif--}}
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">

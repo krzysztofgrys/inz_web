@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Gateways\EntitiesGateway;
+use App\Helpers\LayoutHelper;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ class AuthController extends Controller
 
     public function auth(Request $request, $service)
     {
-
+        LayoutHelper::flushAllMessages($request);
         $code   = $request->get('code');
         $client = new Client([
             'headers' => [

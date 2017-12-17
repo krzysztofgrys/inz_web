@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -57,21 +58,38 @@ class RegisterController extends Controller
         ]);
     }
 
-//    public function showRegistrationForm()
-//    {
-//    }
-
     public function register(Request $request)
     {
+
+        $data = [
+            'name'     => $request->get('name'),
+            'email'    => $request->get('email'),
+            'password' => $request->get('password')
+        ];
+
+        if (!$this->validator($data)) {
+            $request->session()->flash('error', ['title' => 'Błąd', 'content' => 'Wprowadzone dane są niepoprawne']);
+
+            return redirect()->back();
+        }
+
         $client = new Client();
-        $result = $client->post(env('API').'/v1/register', [
-            'form_params' => [
-                'name'     => $request['name'],
-                'email'    => $request['email'],
-                'password' => $request['password'],
-                'c_password' => $request['password_confirmation']
-            ]
-        ]);
+
+        try{
+            $result = $client->post(env('API') . '/v1/register', [
+                'form_params' => [
+                    'name'       => $request['name'],
+                    'email'      => $request['email'],
+                    'password'   => $request['password'],
+                    'c_password' => $request['password_confirmation']
+                ]
+            ]);
+        }catch (RequestException $e){
+            $request->session()->flash('error', ['title' => 'Błąd', 'content' => 'Wprowadzone dane są niepoprawne']);
+            return redirect()->back();
+        }
+
+        $request->session()->flash('info', ['title' => 'Sukces', 'content' => 'Pomyślnie utworzono konto. Możesz się teraz zalogować']);
 
         return redirect()->intended('/');
     }
@@ -84,7 +102,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dd(1);
 
         return 1;
     }

@@ -16,14 +16,18 @@
 //});
 
 Auth::routes();
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/add', 'AddEntityController@index')->name('addEntity');
 Route::post('/add', 'AddEntityController@store')->name('addEntity');
 Route::get('/entity/{id}', 'HomeController@show')->name('showEntity');
 Route::get('/entity/{id}/rate', 'HomeController@rate')->name('rateEntity');
 Route::get('/entity/{id}/delete', 'HomeController@delete')->name('deleteEntity');
+Route::get('/entity/{id}/edit', 'HomeController@editEntity')->name('editEndity');
+Route::get('/entity/{id}/edit', 'HomeCmy)ontroller@saveEditedEntity')->name('saveEditedEndity');
 Route::post('/entity/{id}/comment/add', 'HomeController@addComment')->name('addComment');
+Route::get('/entity/{id}/comment/delete', 'HomeController@deleteComment')->name('deleteComment');
+Route::get('/entity/{id}/comment/edit', 'HomeController@editComment')->name('editComment');
+Route::post('/entity/{id}/comment/edit', 'HomeController@saveEditedComment')->name('saveEditedComment');
 Route::get('/messages', 'MessagesController@index')->name('messages');
 Route::get('/messages/show/{id}', 'MessagesController@show')->name('message');
 Route::get('/messages/new', 'MessagesController@newConversation')->name('newConversation');
@@ -40,3 +44,7 @@ Route::get('/login/{service}/callback', 'AuthController@auth')->name('oauth');
 Route::get('/login/{service}', 'AuthController@send')->name('send');
 Route::get('/currency', 'CurrencyController@index')->name('currency');
 Route::get('/currency/{currency}', 'CurrencyController@show')->name('changeCurrency');
+
+
+
+

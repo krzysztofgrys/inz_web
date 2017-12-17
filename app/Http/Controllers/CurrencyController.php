@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Gateways\EntitiesGateway;
+use App\Helpers\LayoutHelper;
 
 class CurrencyController extends Controller
 {
@@ -21,13 +22,11 @@ class CurrencyController extends Controller
 
     public function index(Request $request)
     {
-
+        LayoutHelper::flushAllMessages($request);
         $convert = $request->get('convert', 'USD');
 
         $currency = $this->currencyGateway->getCurrencies($convert);
 
         return view('currency', ['datas' => json_decode($currency->getBody()->getContents())]);
     }
-
-
 }

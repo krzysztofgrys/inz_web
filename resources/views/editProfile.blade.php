@@ -63,7 +63,29 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                    <label for="password" class="col-md-2 control-label">Hasło:</label>
+
+                                    <div class="col-md-8">
+                                        <input id="password" type="password" class="form-control" name="password" >
+
+                                        @if ($errors->has('password'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password-confirm" class="col-md-2 control-label">Powtórz Hasło:</label>
+
+                                    <div class="col-md-8">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" >
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
 
                         <p>Opis: (Maksymalnie 500 znaków)</p>
