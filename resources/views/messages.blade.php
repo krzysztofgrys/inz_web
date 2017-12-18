@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
-                <div class="panel-heading">Twoje konwersacje: <a href="./messages/new" class="btn btn-info" role="button">Nowa Wiadomość</a>
+                <div class="panel-heading">Twoje konwersacje:
+                    <div class="text-right pull-right"><a href="./messages/new" class="btn btn-info btn-xs">Nowa Wiadomość</a></div>
                 </div>
 
 

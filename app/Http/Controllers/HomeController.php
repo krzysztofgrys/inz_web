@@ -9,6 +9,8 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use App\Gateways\EntitiesGateway;
 use App\Helpers\LayoutHelper;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 
 class HomeController extends Controller
 {
@@ -27,13 +29,13 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $entities =json_decode($this->entitiesGateway->getEntities()->getBody()->getContents());
+        $entities = json_decode($this->entitiesGateway->getEntities()->getBody()->getContents());
 
-        if(isset($entities->error)){
+        if (isset($entities->error)) {
             $data = [];
             $request->session()->flash('info', ['title' => 'Brak wpisów', 'content' => '<a href=/add> Kliknij tutaj, aby dodać pierwszy wpis!</a>']);
 
-        }else{
+        } else {
             $data = $entities->data;
         }
 
@@ -42,19 +44,18 @@ class HomeController extends Controller
 
     public function show(Request $request, $id)
     {
-
         $result   = json_decode($this->entitiesGateway->getEntity($id)->getBody()->getContents());
         $comments = json_decode($this->commentsGateway->getComments($id)->getBody()->getContents());
 
-        if(isset($result->error)){
+        if (isset($result->error)) {
             abort(404, 'Brak wpisu o danym ID');
         }
 
         return view('entity',
             [
-                'data'           => $result->data[0],
+                'data'           => $result->data,
                 'comments'       => $comments->data,
-                'comments_count' => count($comments)
+                'comments_count' => count($comments->data)
             ]
         );
     }
@@ -95,5 +96,44 @@ class HomeController extends Controller
         }
 
         return redirect()->route('home');
+    }
+
+    public function editEntity($id)
+    {
+
+        $result = json_decode($this->entitiesGateway->getEntity($id)->getBody()->getContents());
+
+        if (isset($result->error)) {
+            abort(404, 'Brak wpisu o danym ID');
+        }
+
+        return view('edit_entity', ['data' => $result->data]);
+    }
+
+    public function saveEditedEntity(Request $request, $id)
+    {
+
+        $file      = $request->file('thumbnail');
+        $user      = Auth::user();
+        $imageName = '';
+
+        if ($file) {
+            $path = Storage::disk('local')->getAdapter()->getPathPrefix();
+
+            $imageName = md5($request->get('thumbnail') . time()) . '.' . $file->getClientOriginalExtension();
+            $file->move($path . 'image/tmp', $imageName);
+
+
+            $manager  = new ImageManager(array('driver' => 'gd'));
+            $contents = storage_path('app/public/image/tmp/' . $imageName);
+
+            $manager->make($contents)->resize(100, 100)->save(storage_path('app/public/image/entity/' . $imageName));
+        }
+
+        $result = $this->entitiesGateway->editEntity($id, $user, $request->get('title'), $request->get('description'), $imageName, $request->get('url'));
+        $request->session()->flash('success', 'Pomyślnie zaktualizowano dane.');
+
+        return redirect()->route('showEntity', ['id' => $id]);
+
     }
 }

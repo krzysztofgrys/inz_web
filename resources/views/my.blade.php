@@ -96,6 +96,10 @@
 
 
 
+
+
+                @else
+                    <h5>    Brak postów</h5>
                 @endif
             </div>
 

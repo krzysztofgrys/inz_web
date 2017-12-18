@@ -16,7 +16,7 @@
                                 <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
 
                                     <div class="input-group">
-                                        <input type="text" id="search" name="search" class="form-control" placeholder="Szukaj..." autocomplete="off" required>
+                                        <input type="text" id="search" name="search" class="form-control" placeholder="Szukaj..." autocomplete="off"   required>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <span class="input-group-btn"><button class="btn btn-primary" type="submit">Szukaj</button></span>

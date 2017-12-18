@@ -16,7 +16,8 @@
                             <div class="col-sm-2"><img class="media-object"
                                                        src="{{ asset('image/'.$user->avatar) }}"
                                                        alt="Kurt">
-                                <p> Zmien </p></div>
+                                <input id="avatar" type="file"  name="avatar" accept="image/*" >
+                            </div>
                             <div class="col-sm-5">
 
                                 <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">

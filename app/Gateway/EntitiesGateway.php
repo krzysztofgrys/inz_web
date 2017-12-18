@@ -80,8 +80,28 @@ class EntitiesGateway
         return $result;
     }
 
-    public function authenticatedGetEntity()
+
+    public function editEntity($id ,$user, $title, $description, $thumbnail, $url)
     {
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+        $result = $client->put(env('API') . '/v1/entity/' . $id, [
+            'form_params' => [
+                'title'       => $title,
+                'description' => $description,
+                'thumbnail'   => $thumbnail,
+                'url'         => $url,
+            ],
+            ['http_errors' => false]
+        ]);
+
+        return $result;
 
     }
 }

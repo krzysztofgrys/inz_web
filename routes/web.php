@@ -23,7 +23,7 @@ Route::get('/entity/{id}', 'HomeController@show')->name('showEntity');
 Route::get('/entity/{id}/rate', 'HomeController@rate')->name('rateEntity');
 Route::get('/entity/{id}/delete', 'HomeController@delete')->name('deleteEntity');
 Route::get('/entity/{id}/edit', 'HomeController@editEntity')->name('editEndity');
-Route::get('/entity/{id}/edit', 'HomeCmy)ontroller@saveEditedEntity')->name('saveEditedEndity');
+Route::post('/entity/{id}/edit', 'HomeController@saveEditedEntity')->name('saveEditedEndity');
 Route::post('/entity/{id}/comment/add', 'HomeController@addComment')->name('addComment');
 Route::get('/entity/{id}/comment/delete', 'HomeController@deleteComment')->name('deleteComment');
 Route::get('/entity/{id}/comment/edit', 'HomeController@editComment')->name('editComment');

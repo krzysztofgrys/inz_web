@@ -10,7 +10,8 @@
                     @auth
                         @if($data->user_id == Auth::user()->user->user->id)
                             <div class="text-right pull-right">
-                                <a href="/entity/{{ $data->entity_id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
+                                <a href="/entity/{{ $data->id }}/edit" class="btn btn-info btn-xs">Edytuj</a>
+                                <a href="/entity/{{ $data->id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
 
                             </div>
                         @endif
@@ -23,45 +24,57 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="entity">
-                        <div class="entity-left">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p>
-                                    <div class="circle"><span><i class="fa fa-btc"></i> {{ $data->rating }}</span></div>
-                                    </p>
-                                    <p>PODARUJ</p>
+
+                        <div class="entity">
+                            <div class="entity-left">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
+                                    </div>
+                                    <a href="{{ $data->url}}">
+                                        <div class="col-md-4">
+                                            <img class="media-object"
+                                                 src="{{ asset('storage/image/entity/'.$data->thumbnail) }}"
+                                                 alt="Kurt">
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="col-md-4"><a href="#">
-                                        <img class="media-object"
-                                             src="{{ asset('storage/image/entity/'.$data->thumbnail) }}"
-                                             alt="Kurt">
-                                    </a></div>
-
-
                             </div>
-                        </div>
-
-                        <a href="#">
 
                             <div class="entity-right">
-                                <div class="entity-title">{{ $data->title }}
-                                </div>
+                                <a href="{{  $data->url}}">
+                                    <div class="entity-title">{{ $data->title }}
+                                    </div>
+                                </a>
                                 <div class="entity-description">
-                                    {{ $data->description }}
-                                    <div class="entity-info"> komentarze / Zobacz wiecej</div>
-                                </div>
-                        </a>
+                                    <a href="{{ $data->url}}">
+                                        {{ $data->description }}
+                                    </a>
+                                    {{--<div class="entity-info">--}}
+                                    <div class="entity-info-left">
+                                        <a href="{{  '/profile/' . $data->user_id }}">
+                                            <i class="fa fa-user"> dodał: {{ '@'.$data->user_name }}</i>
+                                        </a>
+                                        <strong> | </strong>
+                                        <i class="fa fa-calendar-check-o"> {{ $data->created_at }}</i>
 
-                    </div>
+                                        <strong> | </strong>
+                                        <a href="{{  $data->url }}">
+                                            <i class="fa fa-globe"> domena:
+                                                {{ $data->domain }}</i>
+                                        </a>
+                                    </div>
+                                    {{--</div>--}}
+                                </div>
+                            </div>
+
+                        </div>
 
 
                 </div>
             </div>
-            <br>
 
         </div>
-    </div>
     </div>
 
     <div class="panel panel-default">
@@ -94,7 +107,7 @@
                                 @auth()
                                     @if ($comment->user_id == Auth::user()->user->user->id)
                                         <div class="text-right pull-right">
-                                            <a href="/entity/{{ $data->entity_id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
+                                            <a href="/entity/{{ $data->id }}/delete" class="btn btn-danger btn-xs">Usuń</a>
 
                                         </div>)
 
@@ -114,7 +127,7 @@
             <div class="panel-heading">Dodaj komentarz:</div>
 
             <div class="panel-body">
-                <form class="form-horizontal" method="POST" action="{{ route('addComment', $data->entity_id ) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('addComment', $data->id ) }}">
                     {{ csrf_field() }}
 
 
