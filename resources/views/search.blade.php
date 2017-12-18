@@ -62,7 +62,7 @@
                         <div class="panel-body">
                             @foreach($data->entries as $entry)
                                 <?php
-                                $title = preg_replace('#('.$searched.')#i', "<p><mark>\1</p></mark>", $entry->title);
+                                $title = preg_replace("/($searched)/i", "<p><mark>$1</p></mark>", $entry->title);
                                 echo $title;
                                 ?>
 
