@@ -2,13 +2,13 @@
 
 @section('content')
     {{--@if(isset($error))--}}
-        {{--<div class="alert alert-{{ $type }} alert-dismissable fade in">--}}
-            {{--<div class="alert-close" onclick="$('.alert').hide()">--}}
-                {{--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--}}
-                {{--<strong>Błąd!</strong>--}}
-                {{--Niepoprawna nazwa użytkownika lub hasło--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="alert alert-{{ $type }} alert-dismissable fade in">--}}
+    {{--<div class="alert-close" onclick="$('.alert').hide()">--}}
+    {{--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>--}}
+    {{--<strong>Błąd!</strong>--}}
+    {{--Niepoprawna nazwa użytkownika lub hasło--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
     {{--@endif--}}
     <div class="container">
@@ -60,7 +60,7 @@
                         <div class="col text-center">
                             <p><strong>Lub zaloguj przy pomocy:</strong></p>
                             <a href="{{ url('/login/github') }}" class="btn btn-github"><i class="fa fa-github"></i> Github</a>
-                            <a href="{{ url('/login/twitter') }}" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a>
+                            <a href="{{ url('/login/bitbucket') }}" class="btn btn-bitbucket"><i class="fa fa-bitbucket"></i> Bitbucket</a>
                             <a href="{{ url('/login/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
                             <a href="{{ url('/login/google') }}" class="btn btn-google"><i class="fa fa-google"></i> Google</a>
 

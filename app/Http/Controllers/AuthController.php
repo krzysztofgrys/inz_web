@@ -32,7 +32,7 @@ class AuthController extends Controller
                 'Accept' => 'application/json'
             ]
         ]);
-
+        dd(1);
         $result = $client->get(env('API') . '/v1/login/' . $service . '/callback', [
             'query' => [
                 'code' => $code
