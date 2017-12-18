@@ -11,6 +11,7 @@
 |
 */
 
+Route::feeds();
 //Route::get('/', function () {
 //    return view('welcome');
 //});

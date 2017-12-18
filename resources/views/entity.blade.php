@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
@@ -99,8 +98,8 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <img class="media-object"
-                                             src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                             alt="Kurt">
+                                             src="{{ asset('storage/image/avatars/'.Auth::user()->user->user->avatar) }}"
+                                             alt="avatar">
                                     </div>
                                 </div>
                             </div>

@@ -9,10 +9,9 @@
                     <div class="text-right pull-right"><a href="./messages/new" class="btn btn-info btn-xs">Nowa Wiadomość</a></div>
                 </div>
 
-
                 @if(empty($messages))
 
-                    <h2>Nic tu nie ma.</h2>
+                    <h5>Nic tu nie ma.</h5>
                     <a href="./messages/new"><h3>Zacznij swoją pierwsza konwersacje!</h3></a>
 
                 @endif
