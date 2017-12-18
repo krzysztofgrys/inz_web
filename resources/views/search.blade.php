@@ -45,7 +45,6 @@
 
                         @foreach($data->users as $user)
                             <a href="/profile/{{ $user->id }} "><p>{{$user->name}}</p></a>
-
                         @endforeach
 
                     </div>
@@ -61,12 +60,61 @@
 
                         <div class="panel-body">
                             @foreach($data->entries as $entry)
-                                <?php
-                                $title = preg_replace("/($searched)/i", "<p><mark>$1</p></mark>", $entry->title);
-                                echo $title;
-                                ?>
+                                <div class="entity">
+                                    <div class="entity-left">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="circle"><i class="fa fa-btc"></i>{{ $entry->rating }}</div>
+                                            </div>
+                                            <a href="{{  '/entity/' . $entry->id }}">
+                                                <div class="col-md-4">
+                                                    <img class="media-object"
+                                                         src="{{ asset('storage/image/entity/'.$entry->thumbnail) }}"
+                                                         alt="thumbnail">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
 
-                                {{--<p>{{ dd($entry) }}</p>--}}
+
+                                    <div class="entity-right">
+                                        <a href="{{  '/entity/' . $entry->id }}">
+                                            <div class="entity-title">
+                                                 <?php
+                                                echo Layout::highlight($entry->title, $searched);
+                                                ?>
+                                            </div>
+                                        </a>
+                                        <div class="entity-description">
+                                            <a href="{{  '/entity/' . $entry->id }}">
+                                                <?php
+                                                echo Layout::highlight($entry->description, $searched);
+                                                ?>
+                                            </a>
+                                            {{--<div class="entity-info">--}}
+                                            <div class="entity-info-left">
+                                                <a href="{{  '/profile/' . $entry->user_id }}">
+                                                    <i class="fa fa-user"> dodał: </i>
+                                                </a>
+                                                <strong> | </strong>
+                                                <i class="fa fa-calendar-check-o"> {{ $entry->created_at }}</i>
+
+                                                <strong> | </strong>
+                                                <a href="{{  '/entity/' . $entry->id }}">
+                                                    <i class="fa fa-globe"> domena:
+                                                        youtube.com</i>
+                                                </a>
+                                                <strong> | </strong>
+                                                <a href="{{  '/entity/' . $entry->id }}">
+                                                    <i class="fa fa-comment"> zobacz komentarze</i>
+                                                </a>
+
+                                            </div>
+                                            {{--</div>--}}
+                                        </div>
+                                    </div>
+
+                                </div>
 
                             @endforeach
                         </div>

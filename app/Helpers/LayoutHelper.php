@@ -22,11 +22,23 @@ class LayoutHelper
         return array_key_exists('content', $flash) ? $flash['content'] : '';
     }
 
-    public static function flushAllMessages($request){
+    public static function flushAllMessages($request)
+    {
         $request->session()->forget('info');
         $request->session()->forget('warning');
         $request->session()->forget('error');
         $request->session()->forget('success');
+    }
+
+    public static function highlight($text, $words)
+    {
+        preg_match_all('~[A-Za-z0-9_äöüÄÖÜ]+~', $words, $m);
+        if (!$m) {
+            return $text;
+        }
+        $re = '~(' . implode('|', $m[0]) . ')~i';
+
+        return preg_replace($re, '<mark>$0</mark>', $text);
     }
 
 }
