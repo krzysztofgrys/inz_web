@@ -37,8 +37,8 @@ class AuthController extends Controller
                 'code' => $code
             ]
         ]);
-        dd($result->getBody()->getContents());
-        $user       = json_decode($result->getBody()->getContents())->success;
+
+        $user       = json_decode($result->getBody()->getContents())->data;
         $user       = new User($user);
         $this->user = $user;
         session()->push('user', $user);
