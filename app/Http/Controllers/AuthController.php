@@ -32,13 +32,12 @@ class AuthController extends Controller
                 'Accept' => 'application/json'
             ]
         ]);
-        dd(1);
         $result = $client->get(env('API') . '/v1/login/' . $service . '/callback', [
             'query' => [
                 'code' => $code
             ]
         ]);
-
+        dd($result->getBody()->getContents());
         $user       = json_decode($result->getBody()->getContents())->success;
         $user       = new User($user);
         $this->user = $user;
