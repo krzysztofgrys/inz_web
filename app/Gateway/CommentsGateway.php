@@ -47,4 +47,47 @@ class CommentsGateway
 
         return $result;
     }
+
+
+    public function deleteComment($user, $id)
+    {
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+        $result = $client->delete(env('API') . '/v1/comment/' . $id, [
+            'form_params' => [
+                'comment' => $id,
+            ]
+        ]);
+
+
+        return $result;
+
+    }
+
+    public function editComment($user, $id, $body)
+    {
+
+        $client = new Client([
+            'headers' => [
+                'Authorization' => 'Bearer ' . $user->getRememberToken(),
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+        $result = $client->put(env('API') . '/v1/comment/' . $id, [
+            'form_params' => [
+                'comment_id' => $id,
+                'comment'    => $body,
+            ]
+        ]);
+
+
+        return $result;
+    }
 }

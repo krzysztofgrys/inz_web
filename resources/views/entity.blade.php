@@ -88,37 +88,48 @@
                 @endif
 
                 @foreach($comments as $comment)
-                    {{--{{ dd($comment) }}--}}
-                    <div class="entity">
-                        <div class="entity-left">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img class="media-object"
-                                         src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
-                                         alt="Kurt">
+
+                    @if(isset($edit) && $comment->id == $edit)
+
+                        TEN
+
+                    @else
+                        <div class="entity">
+                            <div class="entity-left">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img class="media-object"
+                                             src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                             alt="Kurt">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="entity-right">
-                            <div class="comment-info">
-                                <div class="comment-info-text">
-                                    Dodał: <a href=" {{ '/profile/'.$comment->user_id }}  ">{{ $comment->name }}</a><strong> | </strong> {{ $comment->created_at }}
+                            <div class="entity-right">
+                                <div class="comment-info">
+                                    <div class="comment-info-text">
+                                        Dodał: <a href=" {{ '/profile/'.$comment->user_id }}  ">{{ $comment->name }}</a><strong>
+                                            | </strong> {{ $comment->created_at }}
 
 
                                         <div class="text-right pull-right">
-                                            <a href="/entity/{{ $data->id }}/comment/edit" class="btn btn-info btn-xs">Edytuj</a>
-                                            <a href="/entity/{{ $data->id }}/comment/delete" class="btn btn-danger btn-xs">Usuń</a>
+                                            <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/edit?comment={{ $comment->comments }}" class="btn btn-info btn-xs">Edytuj</a>
+                                            <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/delete"
+                                               class="btn btn-danger btn-xs">Usuń</a>
 
                                         </div>
-                                </div>
+                                    </div>
 
-                            </div>
-                            <div class="comment-body">
-                                {{ $comment->comments }}
+                                </div>
+                                <div class="comment-body">
+                                    {{ $comment->comments }}
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    @endif
+
+
 
                 @endforeach
             </div>

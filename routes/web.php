@@ -25,9 +25,9 @@ Route::get('/entity/{id}/delete', 'HomeController@delete')->name('deleteEntity')
 Route::get('/entity/{id}/edit', 'HomeController@editEntity')->name('editEndity');
 Route::post('/entity/{id}/edit', 'HomeController@saveEditedEntity')->name('saveEditedEndity');
 Route::post('/entity/{id}/comment/add', 'HomeController@addComment')->name('addComment');
-Route::get('/entity/{id}/comment/delete', 'HomeController@deleteComment')->name('deleteComment');
-Route::get('/entity/{id}/comment/edit', 'HomeController@editComment')->name('editComment');
-Route::post('/entity/{id}/comment/edit', 'HomeController@saveEditedComment')->name('saveEditedComment');
+Route::get('/entity/{id}/comment/{comment}/delete', 'HomeController@deleteComment')->name('deleteComment');
+Route::get('/entity/{id}/comment/{comment}/edit', 'HomeController@editComment')->name('editComment');
+Route::post('/entity/{id}/comment/{comment}/edit', 'HomeController@saveEditedComment')->name('saveEditedComment');
 Route::get('/messages', 'MessagesController@index')->name('messages');
 Route::get('/messages/show/{id}', 'MessagesController@show')->name('message');
 Route::get('/messages/new', 'MessagesController@newConversation')->name('newConversation');

@@ -136,4 +136,51 @@ class HomeController extends Controller
         return redirect()->route('showEntity', ['id' => $id]);
 
     }
+
+
+    public function deleteComment(Request $request, $entityId, $commentid)
+    {
+        $user = Auth::user();
+
+        $result = $this->commentsGateway->deleteComment($user, $commentid);
+        $result = $result->getBody()->getContents();
+
+        if ($result == 'ok') {
+            $request->session()->flash('success', 'Usunięto');
+        } else {
+            $request->session()->flash('error', 'Blad');
+        }
+
+        return redirect()->route('showEntity', $entityId);
+
+    }
+
+    public function editComment(Request $request, $entityId, $commentid)
+    {
+        $user = Auth::user();
+
+        $comment = $request->get('comment');
+
+        return view('edit_comment', ['data' => $comment, 'comment_id' => $commentid, 'entity_id' => $entityId]);
+
+    }
+
+
+    public function saveEditedComment(Request $request, $entityId, $commentid)
+    {
+        $user = Auth::user();
+
+        $comment = $request->get('comment');
+
+        $result = $this->commentsGateway->editComment($user, $commentid, $comment);
+        $result = $result->getBody()->getContents();
+
+        if ($result == 'ok') {
+            $request->session()->flash('success', 'Usunięto');
+        } else {
+            $request->session()->flash('error', 'Blad');
+        }
+
+        return redirect()->route('showEntity', $entityId);
+    }
 }
