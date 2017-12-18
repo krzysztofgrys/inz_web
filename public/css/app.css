@@ -8484,9 +8484,37 @@ button.close {
   margin: 5px;
 }
 
-a:link, a:visited {
+ .entity-title a:link, a:visited {
   text-decoration: none;
   color: #777;
+}
+
+/*.btn a:link, a:visited {*/
+  /*text-decoration: none;*/
+  /*color: #FFFFFF;*/
+/*}*/
+
+/*.messages-right a:link, a:visited{*/
+  /*text-decoration: none;*/
+  /*color: #777;*/
+/*}*/
+
+/*.btn a:link, a:visited {*/
+  /*text-decoration: none;*/
+  /*color: #FFFFFF;*/
+/*}*/
+
+.comment-info{
+  border-bottom: 1px solid #777;
+  padding-bottom: 4px;
+}
+.comment-info-text{
+  margin-left: 10px;
+}
+
+.comment-body{
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
 
