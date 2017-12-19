@@ -108,14 +108,17 @@
                                         Dodał: <a href=" {{ '/profile/'.$comment->user_id }}  ">{{ $comment->name }}</a><strong>
                                             | </strong> {{ $comment->created_at }}
 
+                                        @auth
+                                            @if($comment->user_id == Auth::user()->user->user->id)
+                                                <div class="text-right pull-right">
+                                                    <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/edit?comment={{ $comment->comments }}"
+                                                       class="btn btn-info btn-xs">Edytuj</a>
+                                                    <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/delete"
+                                                       class="btn btn-danger btn-xs">Usuń</a>
 
-                                        <div class="text-right pull-right">
-                                            <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/edit?comment={{ $comment->comments }}"
-                                               class="btn btn-info btn-xs">Edytuj</a>
-                                            <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/delete"
-                                               class="btn btn-danger btn-xs">Usuń</a>
-
-                                        </div>
+                                                </div>
+                                            @endif
+                                        @endauth
                                     </div>
 
                                 </div>
