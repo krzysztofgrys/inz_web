@@ -112,6 +112,7 @@
   overflow: hidden;
   margin: 5px;
   font-size: 30px;
+  color: white;
   min-height: 150px;
 }
 
@@ -127,6 +128,9 @@
   float: right;
   width: auto;
   margin: 5px;
+  color: white;
+  border-radius: 40px;
+
 }
 
 .message div {
@@ -151,15 +155,16 @@
 //  color: #FFFFFF;
 //}
 
-.comment-info{
+.comment-info {
   border-bottom: 1px solid #777;
   padding-bottom: 4px;
 }
-.comment-info-text{
+
+.comment-info-text {
   margin-left: 10px;
 }
 
-.comment-body{
+.comment-body {
   margin-top: 5px;
   margin-left: 10px;
 }

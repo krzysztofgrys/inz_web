@@ -17,17 +17,29 @@
                 @endif
                 @foreach($messages as $message)
                     {{ var_dump($message) }}
+                    @if($message->receiver_id == Auth::user()->user->user->id )
+                    <div class="messages">
+                        <a href="/messages/show/{{ $message->sender_id }}">
+                            <div class="messages-left"><img class="media-object"
+                                                            src="{{ asset('storage/image/avatars/'.$message->avatar) }}"
 
-                @if($message->id != Auth::user()->user->user->id )
+                                                            alt="Kurt"></div>
+                            <div class="messages-right">Konwersacja z @ {{ $message->sender_name }}</div>
+                        </a>
+                    </div>
+                    @else
                         <div class="messages">
-                            <a href="/messages/show/{{ $message->id }}">
+                            <a href="/messages/show/{{ $message->receiver_id }}">
                                 <div class="messages-left"><img class="media-object"
                                                                 src="{{ asset('image/'.$message->avatar) }}"
                                                                 alt="Kurt"></div>
-                                <div class="messages-right">Konwersacja z @ {{ $message->name }}</div>
+                                <div class="messages-right">Konwersacja z @ {{ $message->receiver_name }}</div>
                             </a>
                         </div>
+
+
                     @endif
+
                 @endforeach
 
             </div>

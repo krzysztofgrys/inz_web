@@ -126,10 +126,11 @@ class ProfilController extends Controller
             'form_params' => [
                 'city'        => $request->get('city'),
                 'description' => $request->get('description'),
+                'age'         => $request->get('age'),
                 'fullname'    => $request->get('fullname'),
                 'password'    => $request->get('password'),
                 'c_password'  => $request->get('c_password'),
-                'avatar'     => $imageName
+                'avatar'      => $imageName
             ]
         ]);
 

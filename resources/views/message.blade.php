@@ -13,20 +13,15 @@
                         @if($message->receiver_id == $receiver->id)
                             <div class="message-receiver">
                                 {{ $message->message }}
-
                             </div>
-
                         @else
-
                             <div class="message-sender">
                                 {{ $message->message }}
-
                             </div>
                         @endif
                     </div>
                 @endforeach
             </div>
-
 
             <div class="panel panel-default">
 
