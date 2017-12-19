@@ -16,6 +16,7 @@
 
                 @endif
                 @foreach($messages as $message)
+                    {{ var_dump($message) }}
                     @if($message->receiver_id == Auth::user()->user->user->id )
                         <div class="messages">
                             <a href="/messages/show/{{ $message->sender_id }}">
@@ -30,7 +31,7 @@
                         <div class="messages">
                             <a href="/messages/show/{{ $message->receiver_id }}">
                                 <div class="messages-left"><img class="media-object"
-                                                                src="{{ asset('image/'.$message->avatar) }}"
+                                                                src="{{ asset('storage/image/avatars/'.$message->avatar) }}"
                                                                 alt="Kurt"></div>
                                 <div class="messages-right">Konwersacja z @ {{ $message->receiver_name }}</div>
                             </a>
