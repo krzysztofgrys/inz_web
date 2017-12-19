@@ -24,7 +24,8 @@ class MessagesController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index()
+    {
 
 
         $user = Auth::user();
@@ -37,13 +38,14 @@ class MessagesController extends Controller
         ]);
 
 
-        $result        = $client->get(env('API') . '/v1/messages');
+        $result = $client->get(env('API') . '/v1/messages', ['http_errors' => false]);
 
         return view('messages', ['messages' => json_decode($result->getBody()->getContents())->data]);
 
     }
 
-    public function show($id){
+    public function show($id)
+    {
 
         $user = Auth::user();
 
@@ -55,7 +57,7 @@ class MessagesController extends Controller
         ]);
 
 
-        $result        = $client->get(env('API') . '/v1/messages/'.$id);
+        $result = $client->get(env('API') . '/v1/messages/' . $id, ['http_errors' => false]);
 
         $data = json_decode($result->getBody()->getContents())->data;
 
@@ -63,17 +65,19 @@ class MessagesController extends Controller
     }
 
 
-    public function newConversation(Request $request){
+    public function newConversation(Request $request)
+    {
 
         return view('new_message');
 
     }
 
 
-    public function sendMessage(Request $request){
+    public function sendMessage(Request $request)
+    {
 
         $receiver = $request->get('receiver');
-        $message = $request->get('body');
+        $message  = $request->get('body');
 
         $user = Auth::user();
 
@@ -85,12 +89,21 @@ class MessagesController extends Controller
         ]);
 
 
-        $result        = $client->post(env('API') . '/v1/messages', [
+        $result = $client->post(env('API') . '/v1/messages', [
             'form_params' => [
-                'receiver'         => $receiver,
-                'message'   => $message,
-            ]
+                'receiver' => $receiver,
+                'message'  => $message,
+            ],
+            'http_errors' => false
         ]);
+
+//        dd($result->getBody()->getContents());
+//        $result = json_decode($result->getBody()->getContents());
+//
+//        if (isset($result->error)) {
+//            abort(404, 'Brak wpisu o danym ID');
+//        }
+
 
         return redirect()->route('message', ['id' => $result->getBody()->getContents()]);
     }

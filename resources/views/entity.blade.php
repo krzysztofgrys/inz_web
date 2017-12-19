@@ -87,18 +87,15 @@
                 @endif
 
                 @foreach($comments as $comment)
-
                     @if(isset($edit) && $comment->id == $edit)
-
                         TEN
-
                     @else
                         <div class="entity">
                             <div class="entity-left">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <img class="media-object"
-                                             src="{{ asset('storage/image/avatars/'.Auth::user()->user->user->avatar) }}"
+                                             src="{{ asset('storage/image/avatars/'.$comment->avatar) }}"
                                              alt="avatar">
                                     </div>
                                 </div>
@@ -145,7 +142,7 @@
 
                     <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
                         <label for="body" class="col-md-2 control-label"><img class="media-object"
-                                                                              src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                                                              src="{{ asset('storage/image/avatars/'.Auth::user()->user->user->avatar) }}"
                                                                               alt="Kurt"></label>
 
                         <div class="col-md-8">

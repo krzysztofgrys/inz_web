@@ -14,8 +14,8 @@
 
                     <div class="row">
                         <div class="col-sm-2"><img class="media-object"
-                                                   src="{{ asset('image/'.$user->avatar) }}"
-                                                   alt="Kurt"></div>
+                                                   src="{{ asset('storage/image/avatars/'.$user->avatar) }}"
+                                                   alt="avatar"></div>
                         <div class="col-sm-5">
                             <p class="font-weight-bold"> Imię i Nazwisko: {{ $user->fullname }}</p>
                             <p class="font-weight-bold"> Miasto: {{ $user->city }}</p>
@@ -23,7 +23,7 @@
 
                         </div>
                         <div class="col-sm-5">
-                            <p class="font-weight-bold"> Wiek: {{ $user->date_of_birth }}</p>
+                            <p class="font-weight-bold"> Wiek: {{ $user->age }}</p>
                             <p class="font-weight-bold"> Dołączył: {{ $user->created_at }}</p>
                         </div>
                     </div>

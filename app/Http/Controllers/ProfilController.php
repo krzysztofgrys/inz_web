@@ -15,6 +15,7 @@ use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
 
+
 class ProfilController extends Controller
 {
     public function __construct()
@@ -98,11 +99,37 @@ class ProfilController extends Controller
             ]
         ]);
 
+        if ($request->get('password') != $request->get('c_password')) {
+            $request->session()->flash('error', 'Hasła nie są takie same.');
+
+            return redirect()->route('showProfile', $id);
+        }
+
+        if ($file = $request->file('avatar')) {
+            $file = $request->file('avatar');
+            $path = Storage::disk('local')->getAdapter()->getPathPrefix();
+
+            $imageName = md5($request->get('avatar') . time()) . '.' . $file->getClientOriginalExtension();
+            $file->move($path . 'image/tmp', $imageName);
+
+
+            $manager  = new ImageManager(array('driver' => 'gd'));
+            $contents = storage_path('app/public/image/tmp/' . $imageName);
+
+            $manager->make($contents)->resize(100, 100)->save(storage_path('app/public/image/avatars/' . $imageName));
+        } else {
+            $imageName = '';
+        }
+
+
         $result = $client->put(env('API') . '/v1/users/' . $id, [
             'form_params' => [
                 'city'        => $request->get('city'),
                 'description' => $request->get('description'),
-                'fullname'    => $request->get('fullname')
+                'fullname'    => $request->get('fullname'),
+                'password'    => $request->get('password'),
+                'c_password'  => $request->get('c_password'),
+                'avatar'     => $imageName
             ]
         ]);
 

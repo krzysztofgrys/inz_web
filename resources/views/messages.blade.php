@@ -16,14 +16,16 @@
 
                 @endif
                 @foreach($messages as $message)
-                    <div class="messages">
-                        <a href="/messages/show/{{ $message->id }}">
-                            <div class="messages-left"><img class="media-object"
-                                                            src="{{ asset('image/'.$message->avatar) }}"
-                                                            alt="Kurt"></div>
-                            <div class="messages-right">Konwersacja z @ {{ $message->name }}</div>
-                        </a>
-                    </div>
+                    @if($message->id != Auth::user()->user->user->id )
+                        <div class="messages">
+                            <a href="/messages/show/{{ $message->id }}">
+                                <div class="messages-left"><img class="media-object"
+                                                                src="{{ asset('image/'.$message->avatar) }}"
+                                                                alt="Kurt"></div>
+                                <div class="messages-right">Konwersacja z @ {{ $message->name }}</div>
+                            </a>
+                        </div>
+                    @endif
                 @endforeach
 
             </div>

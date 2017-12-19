@@ -9,17 +9,18 @@
                 <div class="panel-heading">Konwersacja z @ {{ $receiver->name }}</div>
 
                 @foreach($messages as $message)
+
                     <div class="message">
                         @if($message->receiver_id == $receiver->id)
                             <div class="message-receiver">
-                                RECEIVER
+                                {{ $message->message }}
 
                             </div>
 
                         @else
 
                             <div class="message-sender">
-                                SENDER
+                                {{ $message->message }}
 
                             </div>
                         @endif
