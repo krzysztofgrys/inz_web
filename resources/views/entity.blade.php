@@ -28,8 +28,9 @@
                         <div class="entity-left">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
-                                </div>
+                                    <a href="{{  '/entity/' . $data->id.'/rate?dest=entity' }}">
+                                        <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
+                                    </a></div>
                                 <a href="{{ $data->url}}">
                                     <div class="col-md-4">
                                         <img class="media-object"
@@ -109,7 +110,8 @@
 
 
                                         <div class="text-right pull-right">
-                                            <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/edit?comment={{ $comment->comments }}" class="btn btn-info btn-xs">Edytuj</a>
+                                            <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/edit?comment={{ $comment->comments }}"
+                                               class="btn btn-info btn-xs">Edytuj</a>
                                             <a href="/entity/{{request()->route('id')}}/comment/{{ $comment->id }}/delete"
                                                class="btn btn-danger btn-xs">Usuń</a>
 

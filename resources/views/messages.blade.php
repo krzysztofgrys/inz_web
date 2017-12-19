@@ -16,7 +16,9 @@
 
                 @endif
                 @foreach($messages as $message)
-                    @if($message->id != Auth::user()->user->user->id )
+                    {{ var_dump($message) }}
+
+                @if($message->id != Auth::user()->user->user->id )
                         <div class="messages">
                             <a href="/messages/show/{{ $message->id }}">
                                 <div class="messages-left"><img class="media-object"

@@ -60,13 +60,34 @@ class HomeController extends Controller
         );
     }
 
-    public function rate($id)
+    public function rate(Request $request, $id)
     {
 
         $user   = Auth::user();
         $result = $this->rateGateway->rateEntity($user, $id);
+        $result = json_decode($result->getBody()->getContents());
 
-        return $result->getBody()->getContents();
+        if ($result->data == 0) {
+            $request->session()->flash('success', 'Odebrano ocene pomyślnie');
+
+        } else {
+            $request->session()->flash('success', 'Oceniono pomyślnie');
+
+
+        }
+        $dest = $request->get('dest');
+
+        if ($dest == 'entity') {
+            return redirect()->route('showEntity', $id);
+        }
+        if ($dest == 'home') {
+
+            return redirect()->route('home');
+        }
+
+
+        return redirect()->route('home');
+
     }
 
 

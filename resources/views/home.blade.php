@@ -23,7 +23,9 @@
                                     <div class="entity-left">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
+                                                <a href="{{  '/entity/' . $data->id.'/rate?dest=home' }}">
+                                                    <div class="circle"><i class="fa fa-btc"></i>{{ $data->rating }}</div>
+                                                </a>
                                             </div>
                                             <a href="{{  '/entity/' . $data->id }}">
                                                 <div class="col-md-4">
