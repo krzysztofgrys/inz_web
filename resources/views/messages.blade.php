@@ -16,7 +16,6 @@
 
                 @endif
                 @foreach($messages as $message)
-                    {{ var_dump($message) }}
                     @if($message->receiver_id == Auth::user()->user->user->id )
                         <div class="messages">
                             <a href="/messages/show/{{ $message->sender_id }}">

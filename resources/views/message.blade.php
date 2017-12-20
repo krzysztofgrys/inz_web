@@ -33,11 +33,11 @@
 
                         <div class="form-group{{ $errors->has('message') ? ' has-error' : '' }}">
                             <label for="body" class="col-md-2 control-label"><img class="media-object"
-                                                                                  src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAofAAAAJDVjNmI4NzcwLTA2NTktNDZhNS04MWNhLThkNWIwNGJkNGQyNw.png"
+                                                                                  src="{{  asset('storage/image/avatars/'.Auth::user()->user->user->avatar) }}"
                                                                                   alt="Kurt"></label>
 
                             <div class="col-md-8">
-                                <textarea id="body" type="text" class="form-control" name="body" value="{{ old('body') }}"></textarea>
+                                <textarea id="body" type="text" class="form-control" name="body" value="{{ old('body') }} " rows="4"></textarea>
                                 <input id="receiver" name="receiver" type="hidden" value="{{ $receiver->name }}">
 
                                 @if ($errors->has('body'))
@@ -50,7 +50,7 @@
 
 
                         <div class="form-group">
-                            <div class="col-md-12 col-md-offset-9">
+                            <div class="col-md-8 col-md-offset-9">
                                 <button type="submit" class="btn btn-primary">
                                     Wyślij
                                 </button>

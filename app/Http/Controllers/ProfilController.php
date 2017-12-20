@@ -129,7 +129,7 @@ class ProfilController extends Controller
                 'age'         => $request->get('age'),
                 'fullname'    => $request->get('fullname'),
                 'password'    => $request->get('password'),
-                'c_password'  => $request->get('c_password'),
+                'c_password'  => $request->get('password_confirmation'),
                 'avatar'      => $imageName
             ]
         ]);
