@@ -197,7 +197,7 @@ class HomeController extends Controller
         $result = $result->getBody()->getContents();
 
         if ($result == 'ok') {
-            $request->session()->flash('success', 'Usunięto');
+            $request->session()->flash('success', 'Edytowano pomyślnie');
         } else {
             $request->session()->flash('error', 'Blad');
         }
